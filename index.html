@@ -3,19 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover, user-scalable=no">
-<meta name="theme-color" content="#0A160D">
+<meta name="theme-color" content="#FDFDFD">
 <title>Undangan Pernikahan — Abdullah & Aisyah</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&family=Alex+Brush&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&family=Alex+Brush&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 /* ════════════════════════════════════════════
-   RESET, CORE & THEME VARIABLES
+   RESET & THEME VARIABLES
 ════════════════════════════════════════════ */
 :root {
-  /* BACKGROUND BINGKAI (Jalur Relatif untuk GitHub) */
+  --bg-main: #FDFDFD;
+  --bg-alt: #F4F1EA;
+  --text-dark: #1A3626;
+  --text-muted: #4A5C51;
+  --gold-light: #D9C88A;
+  --gold-dark: #9A8040;
+  --green-sage: #6DAB8A;
+  
   --floral-frame-top: url('assets/images/theme1.jpg');
   --floral-frame-bottom: url('assets/images/theme1.jpg');
 }
@@ -23,231 +30,204 @@
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html { font-size:16px; }
 body {
-  font-family: 'Jost', sans-serif;
-  background: #0A160D;
-  color: #fff;
+  font-family: 'Jost', sans-serif; background: var(--bg-main); color: var(--text-dark);
   overflow: hidden; height: 100dvh; width: 100vw;
   overscroll-behavior: none; -webkit-user-select: none; user-select: none;
   -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;
 }
-input, textarea { -webkit-user-select: auto; user-select: auto; }
+input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--text-dark); }
 
 /* ════════════════════════════════════════════
-   PORTRAIT STAGE — 9:16 locked, centered
+   STAGE & SCENE SYSTEM
 ════════════════════════════════════════════ */
-#stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: #000; }
-#film { position: relative; width: min(100vw, calc(100dvh * 9/16)); height: min(100dvh, calc(100vw * 16/9)); overflow: hidden; background: #0A160D; cursor: pointer; }
-#stage::before, #stage::after { content: ''; position: absolute; background: #000; z-index: 100; pointer-events:none; }
+#stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: #E0E0E0; }
+#film { position: relative; width: min(100vw, calc(100dvh * 9/16)); height: min(100dvh, calc(100vw * 16/9)); overflow: hidden; background: var(--bg-main); cursor: pointer; box-shadow: 0 0 30px rgba(0,0,0,0.1); }
+#stage::before, #stage::after { content: ''; position: absolute; background: #E0E0E0; z-index: 100; pointer-events:none; }
 #stage::before { top:0;left:0;right:0; height: max(0px, calc((100dvh - 100vw*16/9)/2)); }
 #stage::after  { bottom:0;left:0;right:0; height: max(0px, calc((100dvh - 100vw*16/9)/2)); }
 
-/* ════════════════════════════════════════════
-   SCENE SYSTEM
-════════════════════════════════════════════ */
-.scene { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0s; overflow: hidden; z-index: 2; }
+.scene { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0s; overflow: hidden; z-index: 3; }
 .scene.active { opacity: 1; pointer-events: all; }
 
 /* ════════════════════════════════════════════
-   GLOBAL CANVAS (Bingkai Theme1 & Background)
+   LAYER 1: BINGKAI & PATTERN (Paling Bawah)
 ════════════════════════════════════════════ */
 #bg-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; }
 
-/* Motif Latar */
 .adat-pattern {
-  position: absolute; inset: 0; pointer-events: none; opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='none' stroke='%23D9C88A' stroke-width='0.5'/%3E%3Ccircle cx='30' cy='30' r='10' fill='none' stroke='%236DAB8A' stroke-width='0.5'/%3E%3C/svg%3E");
+  position: absolute; inset: 0; pointer-events: none; opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='none' stroke='%23C5A866' stroke-width='0.5'/%3E%3Ccircle cx='30' cy='30' r='10' fill='none' stroke='%236DAB8A' stroke-width='0.5'/%3E%3C/svg%3E");
   background-size: 60px 60px;
 }
 
-/* Bingkai Animasi dari file theme1.jpg */
-.floral-corner { position: absolute; z-index: 0; opacity: 0.85; pointer-events: none; background-size: cover; border-radius: 50%; box-shadow: 0 0 40px 20px #0A160D inset;}
+.floral-corner { position: absolute; opacity: 0.9; pointer-events: none; background-size: cover; border-radius: 50%; box-shadow: 0 0 40px 20px var(--bg-main) inset;}
 .floral-tl {
   top: -50px; left: -50px; width: 250px; height: 250px;
   background-image: var(--floral-frame-top); background-position: center;
-  transform-origin: center; animation: swayTL 10s ease-in-out infinite alternate;
-  -webkit-mask-image: radial-gradient(circle, black 30%, transparent 70%);
-  mask-image: radial-gradient(circle, black 30%, transparent 70%);
+  transform-origin: center; animation: shakeFrame 8s ease-in-out infinite alternate;
+  -webkit-mask-image: radial-gradient(circle, black 30%, transparent 70%); mask-image: radial-gradient(circle, black 30%, transparent 70%);
 }
 .floral-br {
   bottom: -50px; right: -50px; width: 280px; height: 280px;
   background-image: var(--floral-frame-bottom); background-position: center;
-  transform-origin: center; animation: swayBR 12s ease-in-out infinite alternate;
-  -webkit-mask-image: radial-gradient(circle, black 30%, transparent 70%);
-  mask-image: radial-gradient(circle, black 30%, transparent 70%);
+  transform-origin: center; animation: shakeFrame 10s ease-in-out infinite alternate;
+  -webkit-mask-image: radial-gradient(circle, black 30%, transparent 70%); mask-image: radial-gradient(circle, black 30%, transparent 70%);
+}
+@keyframes shakeFrame {
+  0%, 100% { transform: rotate(0deg) translate(0px, 0px) scale(1); }
+  50% { transform: rotate(1deg) translate(2px, 2px) scale(1.02); }
 }
 
-@keyframes swayTL { 0% { transform: rotate(0deg) scale(1); } 100% { transform: rotate(5deg) scale(1.05); } }
-@keyframes swayBR { 0% { transform: rotate(0deg) scale(1); } 100% { transform: rotate(-5deg) scale(1.05); } }
+/* ════════════════════════════════════════════
+   LAYER 2: BUNGA GUGUR (Di Tengah/Antara Tulisan)
+════════════════════════════════════════════ */
+#falling-container { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; overflow: hidden; }
 
-/* Animasi Bunga Gugur */
-.bunga-gugur {
-  position: absolute; background-size: contain; background-repeat: no-repeat;
-  animation: fall var(--dur, 15s) var(--del, 0s) linear infinite; pointer-events: none;
-}
+.bunga-gugur { position: absolute; background-size: contain; background-repeat: no-repeat; animation: fall var(--dur, 15s) var(--del, 0s) linear infinite; pointer-events: none; }
 @keyframes fall {
   0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
-  10% { opacity: var(--op, 0.4); }
-  80% { opacity: var(--op, 0.4); }
+  10% { opacity: var(--op, 0.6); }
+  80% { opacity: var(--op, 0.6); }
   100% { transform: translateY(110vh) translateX(var(--drift, 50px)) rotate(var(--rot, 360deg)); opacity: 0; }
 }
 
 /* ════════════════════════════════════════════
-   SCENE 0 — OPENING (HALAMAN DEPAN)
+   LAYER 3: KONTEN KARTU (Paling Atas)
 ════════════════════════════════════════════ */
-#s0 { background: radial-gradient(ellipse at 50% 60%, #0E2518 0%, #091409 60%, #030905 100%); z-index: 10; }
-#s0 .s0-wrap { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0; width: 100%; padding: 0 20px;}
+.content-card {
+  background: rgba(255, 255, 255, 0.75); /* Transparan putih agar daun terlihat samar di belakang */
+  border: 1px solid rgba(154,128,64,0.2);
+  border-radius: 15px; padding: 30px 20px;
+  width: 90%; max-width: 350px;
+  backdrop-filter: blur(3px); /* Efek blur kaca */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+}
 
-.s0-bismillah { font-family: 'Amiri', serif; font-size: clamp(1.8rem, 7vw, 2.4rem); color: #D9C88A; opacity: 0; animation: fadeInUp 1.4s 0.2s forwards; text-align: center; margin-bottom: 0.5rem; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-.s0-tagline { font-size: clamp(0.55rem, 2.2vw, 0.72rem); letter-spacing: 0.42em; text-transform: uppercase; color: rgba(217,200,138,.6); opacity: 0; animation: fadeInUp 1.2s 0.6s forwards; margin-bottom: 0.5rem; }
+/* ════════════════════════════════════════════
+   SCENE 0 — OPENING (COVER)
+════════════════════════════════════════════ */
+#s0 { background: radial-gradient(circle at 50% 50%, #FFFFFF 0%, var(--bg-alt) 100%); z-index: 10; }
+#s0 .s0-wrap { position: relative; display: flex; flex-direction: column; align-items: center; gap: 0; width: 100%; padding: 0 20px;}
 
-/* Desain Lingkaran Foto Pasangan Animasi */
-.s0-photo-wrapper { width: clamp(150px, 48vw, 220px); height: clamp(150px, 48vw, 220px); position: relative; margin: 15px 0 25px 0; opacity: 0; animation: scaleIn 1.2s 1s forwards, floatPhoto 4s 2s ease-in-out infinite; }
-@keyframes floatPhoto { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.s0-bismillah { font-family: 'Amiri', serif; font-size: clamp(2.2rem, 8vw, 3rem); color: var(--gold-dark); opacity: 0; animation: fadeInUp 1.4s 0.2s forwards; text-align: center; margin-bottom: 0.5rem; white-space: nowrap; }
+.s0-tagline { font-size: clamp(0.55rem, 2.2vw, 0.72rem); letter-spacing: 0.42em; text-transform: uppercase; color: var(--text-muted); opacity: 0; animation: fadeInUp 1.2s 0.6s forwards; margin-bottom: 0.5rem; }
 
-.s0-photo-ring { position: absolute; inset: -14px; border-radius: 50%; border: 1px solid rgba(154,128,64,.2); border-top: 2px solid #D9C88A; border-bottom: 2px solid #6DAB8A; animation: spinRing 12s linear infinite; opacity: 0.8;}
-@keyframes spinRing { to { transform: rotate(360deg); } }
+.s0-couple-frame { width: clamp(160px, 48vw, 220px); height: clamp(160px, 48vw, 220px); border-radius: 50%; border: 2px solid var(--gold-light); padding: 10px; background: #fff; box-shadow: 0 10px 30px rgba(154,128,64,0.15); margin: 15px 0 25px 0; position: relative; display: flex; justify-content: center; align-items: center; opacity: 0; overflow: hidden; animation: scaleIn 1.2s 1s forwards, floatCouple 6s 2s ease-in-out infinite, pulseFrame 3s 2s ease-in-out infinite; }
+.s0-couple-vector { width: 95%; height: 95%; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg transform='translate(0,-5)'%3E%3C!-- Suami --%3E%3Ccircle cx='35' cy='25' r='10' fill='%236DAB8A'/%3E%3Cpath d='M35 35 L20 60 H50 L35 35' fill='%231a3626'/%3E%3Crect x='30' y='18' width='10' height='3' rx='1' fill='%23333'/%3E%3C/g%3E%3Cg transform='translate(0,5)'%3E%3C!-- Istri --%3E%3Ccircle cx='65' cy='28' r='9' fill='%23D9C88A'/%3E%3Cpath d='M65 37 C50 37 45 60 45 75 H85 C85 60 80 37 65 37 Z' fill='%23C5A866'/%3E%3C/g%3E%3C!-- Hati --%3E%3Cpath d='M50 45 C48 43 45 43 43 45 C41 47 41 50 43 52 L50 60 L57 52 C59 50 59 47 57 45 C55 43 52 43 50 45 Z' fill='%23c2411f'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; background-position: center; }
 
-.s0-photo { width: 100%; height: 100%; border-radius: 50%; overflow: hidden; border: 3px solid rgba(154,128,64,.6); background: #122A18; position: relative; z-index: 2; box-shadow: 0 15px 35px rgba(0,0,0,0.6);}
-.s0-photo img { width: 100%; height: 100%; object-fit: cover; }
+@keyframes floatCouple { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes pulseFrame { 0%, 100% { box-shadow: 0 10px 30px rgba(154,128,64,0.15); border-color: var(--gold-light); } 50% { box-shadow: 0 10px 40px rgba(154,128,64,0.3); border-color: var(--gold-dark); } }
 
-.s0-names { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 10vw, 4rem); font-weight: 300; color: #fff; opacity: 0; animation: fadeInUp 1.4s 1.2s forwards; line-height: 1; text-align: center; margin-bottom: 10px;}
-.s0-names em { color: #6DAB8A; font-style: italic; font-family: 'Alex Brush', cursive; font-size: 1.2em; display:block; margin: -10px 0;}
+.s0-names { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 12vw, 4.5rem); font-weight: 400; color: var(--text-dark); opacity: 0; animation: fadeInUp 1.4s 1.2s forwards; line-height: 1; text-align: center; margin-bottom: 10px;}
+.s0-names em { color: var(--green-sage); font-style: italic; font-family: 'Alex Brush', cursive; font-size: 1.1em; display:block; margin: -15px 0 -5px 0;}
 
-.btn-save-date { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; background: #1C3A28; color: #D9C88A; border: 1px solid rgba(154,128,64,.4); border-radius: 30px; font-family: 'Jost', sans-serif; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; opacity: 0; animation: fadeInUp 1s 1.8s forwards; margin-top: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);}
-.btn-save-date:hover { background: #254D35; transform: scale(0.95);}
+.btn-save-date { display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; background: transparent; color: var(--gold-dark); border: 1px solid var(--gold-dark); border-radius: 30px; font-family: 'Jost', sans-serif; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; opacity: 0; animation: fadeInUp 1s 1.8s forwards; margin-top: 15px;}
+.btn-save-date:hover { background: rgba(154,128,64,0.05); transform: scale(0.95);}
 
-.s0-tap { font-size: clamp(0.55rem, 2vw, 0.68rem); letter-spacing: 0.35em; text-transform: uppercase; color: rgba(109,171,138,.7); opacity: 0; animation: fadeInUp 1s 2.4s forwards, pulse 2.5s 3.5s ease-in-out infinite; margin-top: 2rem; cursor:pointer;}
-@keyframes pulse { 0%,100%{opacity:.7} 50%{opacity:.25} }
+.s0-hint-text { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-sage); opacity: 0; animation: fadeInUp 1s 2s forwards, pulseHint 2s 3s infinite; margin-top: 1rem; }
+@keyframes pulseHint { 0%, 100% { opacity: 0.8; } 50% { opacity: 0.3; } }
+.s0-tap { font-size: clamp(0.55rem, 2vw, 0.68rem); letter-spacing: 0.35em; text-transform: uppercase; color: var(--green-sage); opacity: 0; animation: fadeInUp 1s 2.4s forwards, pulseHint 2s 3.5s infinite; margin-top: 0.5rem; cursor:pointer;}
 
 #s0.closing { animation: closeScene 0.9s forwards; pointer-events: none;}
-@keyframes closeScene { 0% { opacity:1; transform:scale(1); } 40% { opacity:1; transform:scale(1.06); } 100% { opacity:0; transform:scale(1.12); } }
+@keyframes closeScene { 0% { opacity:1; transform:scale(1); } 40% { opacity:1; transform:scale(1.05); } 100% { opacity:0; transform:scale(1.1); } }
+
+/* ════════════════════════════════════════════
+   GLOBAL SECTION STYLES
+════════════════════════════════════════════ */
+.sec-label { font-size: clamp(0.5rem,1.8vw,0.65rem); letter-spacing: 0.3em; text-transform: uppercase; color: var(--green-sage); margin-bottom: 5px; }
+.sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,8vw,3rem); font-weight: 400; color: var(--text-dark); line-height: 1.1; margin-bottom: 10px;}
+.sec-orn { display:flex; align-items:center; gap:8px; justify-content:center; width: 60%; margin: 10px 0; }
+.sec-orn::before,.sec-orn::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--gold-light),transparent); }
+.sec-orn-dot { width:7px; height:7px; background:var(--gold-dark); border-radius:50%; transform: rotate(45deg); }
 
 /* ════════════════════════════════════════════
    SCENE 1 — BISMILLAH & AYAT
 ════════════════════════════════════════════ */
-#s1 { background: linear-gradient(175deg, #0A1A0D 0%, #122A18 45%, #0A1A0D 100%); }
-.s1-border { position: absolute; inset: clamp(10px, 3vw, 20px); border: 1px solid rgba(154,128,64,.22); pointer-events: none; }
-.s1-border::before { content: ''; position: absolute; inset: 5px; border: 1px solid rgba(109,171,138,.1); }
-
-.s1-content { display: flex; flex-direction: column; align-items: center; gap: clamp(0.6rem, 2.5vw, 1.2rem); padding: clamp(20px,6vw,50px); text-align: center; z-index: 2; }
-.s1-arabic { font-family: 'Amiri', serif; font-size: clamp(1.6rem, 7vw, 2.6rem); color: #D9C88A; line-height: 1.7; direction: rtl; }
-.s1-divider { width: clamp(50px,15vw,80px); height: 1px; background: linear-gradient(90deg, transparent, #9A8040, transparent); }
-.s1-ayat { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(0.85rem, 3.2vw, 1.1rem); color: rgba(255,255,255,.65); line-height: 1.9; max-width: 85%; }
-.s1-ref { font-size: clamp(0.5rem,1.8vw,0.62rem); letter-spacing: 0.22em; text-transform: uppercase; color: #9A8040; padding: 3px 14px; border: 1px solid rgba(154,128,64,.3); }
+.s1-arabic { font-family: 'Amiri', serif; font-size: clamp(2rem, 8vw, 2.8rem); color: var(--gold-dark); line-height: 1.5; direction: rtl; white-space: nowrap; }
+.s1-ayat { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1rem, 3.5vw, 1.2rem); color: var(--text-muted); line-height: 1.8; margin-top: 10px; }
+.s1-ref { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); padding: 5px 15px; border: 1px solid rgba(154,128,64,0.3); border-radius: 20px; margin-top: 10px;}
 
 /* ════════════════════════════════════════════
    SCENE 2 — MEMPELAI
 ════════════════════════════════════════════ */
-#s2 { background: linear-gradient(165deg, #0D2214 0%, #0A1A0D 100%); }
-.s2-bg-circle { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(61,112,85,.18) 0%, transparent 70%); }
-.s2-content { display: flex; flex-direction: column; align-items: center; gap: clamp(0.5rem,2vw,1rem); text-align: center; z-index: 2; padding: clamp(16px,5vw,40px); width: 100%; }
-.s2-family-row { display: flex; align-items: center; justify-content: center; gap: clamp(6px,2vw,14px); width: 90%; }
-.s2-family-card { flex: 1; display: flex; flex-direction: column; align-items: center; gap: clamp(6px,2vw,10px); }
-.s2-photo { width: clamp(70px,22vw,110px); height: clamp(70px,22vw,110px); border-radius: 50%; position: relative; }
-.s2-photo-inner { width: 100%; height: 100%; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: clamp(1.8rem,6vw,3rem); position: relative; overflow: hidden; }
-.s2-photo-inner.pa { background: radial-gradient(135deg, #1C3A28, #3D7055 60%, #254D35); }
-.s2-photo-inner.pb { background: radial-gradient(135deg, #1A4A32, #2E6648 60%, #1C3A28); }
-.s2-photo-ring { position: absolute; inset: -8px; border-radius: 50%; border: 1px solid rgba(154,128,64,.35); }
-.s2-photo-ring::before { content: ''; position: absolute; inset: 6px; border-radius: 50%; border: 1px dashed rgba(109,171,138,.2); animation: rotateSlow 20s linear infinite; }
-.s2-pname { font-family: 'Cormorant Garamond', serif; font-size: clamp(0.9rem,3.2vw,1.3rem); font-style: italic; color: #fff; }
-.s2-ppar { font-size: clamp(0.45rem,1.6vw,0.6rem); color: rgba(255,255,255,.4); line-height: 1.7; text-align: center; }
-.s2-and-wrap { display: flex; flex-direction: column; align-items: center; gap: clamp(4px,1.5vw,8px); flex-shrink: 0; }
-.s2-and-char { font-family: 'Alex Brush', cursive; font-size: clamp(2.5rem,8vw,3.5rem); color: #6DAB8A; animation: heartBeat 2.4s ease infinite; }
-.s2-main-names { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,8.5vw,3.4rem); font-weight: 300; line-height: 1; color: #fff; text-align: center; letter-spacing: 0.02em; }
-.s2-main-names em { color: #9A8040; font-style: italic; }
+.s2-family-row { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; margin-top: 15px;}
+.s2-family-card { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.s2-photo { width: clamp(80px,25vw,120px); height: clamp(80px,25vw,120px); border-radius: 50%; border: 3px solid #fff; box-shadow: 0 5px 20px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; background: var(--bg-main); color: var(--green-sage); position: relative;}
+.s2-pname { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.2rem,4vw,1.6rem); font-weight: 600; color: var(--text-dark); }
+.s2-ppar { font-size: clamp(0.6rem,2vw,0.75rem); color: var(--text-muted); line-height: 1.6; }
+.s2-and-char { font-family: 'Alex Brush', cursive; font-size: clamp(3rem,10vw,4rem); color: var(--green-sage); animation: heartBeat 2.4s ease infinite; }
 
 /* ════════════════════════════════════════════
-   SCENE 3 — AKAD & WALIMAH GABUNG
+   SCENE 3 — AKAD & WALIMAH
 ════════════════════════════════════════════ */
-#s3 { background: linear-gradient(170deg, #091409 0%, #122A18 50%, #091409 100%); overflow-y:auto; }
-.s3-content { display: flex; flex-direction: column; align-items: center; gap: 15px; text-align: center; z-index: 2; padding: 40px 20px; width: 100%; }
-.event-chip { display: inline-block; padding: 4px 12px; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; border: 1px solid rgba(109,171,138,.5); color: #6DAB8A; border-radius: 20px;}
-.event-info-card { background: rgba(255,255,255,.04); border: 1px solid rgba(154,128,64,.2); padding: 20px; width: 90%; border-radius: 12px; position: relative; }
+#s3 { overflow-y:auto; }
+.s3-content { display: flex; flex-direction: column; align-items: center; gap: 15px; text-align: center; padding: 40px 20px; width: 100%; }
+.event-info-card { background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(154,128,64,0.2); padding: 25px 20px; width: 95%; max-width: 350px; border-radius: 15px; position: relative; box-shadow: 0 5px 20px rgba(0,0,0,0.02); backdrop-filter: blur(3px); }
+.event-chip { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background: var(--text-dark); color: #fff; padding: 4px 15px; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; border-radius: 20px;}
 .event-info-row { display: flex; align-items: center; justify-content: flex-start; gap: 12px; margin-bottom: 8px; text-align:left;}
-.ev-icon { color: #6DAB8A; font-size: 1rem; width: 20px; text-align:center;}
-.ev-text { font-size: 0.75rem; color: rgba(255,255,255,.8); }
-.ev-text strong { color: #fff; font-weight: 500; }
-.btn-map-mini { display: inline-flex; align-items: center; justify-content:center; gap: 6px; margin-top: 10px; width:100%; padding: 10px; border: 1px solid rgba(109,171,138,.4); color: #6DAB8A; text-decoration: none; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; border-radius:8px; transition: all .3s; }
+.ev-icon { color: var(--gold-dark); font-size: 1.1rem; width: 22px; text-align:center;}
+.ev-text { font-size: 0.8rem; color: var(--text-muted); }
+.ev-text strong { color: var(--text-dark); font-weight: 600; }
+.btn-map-mini { display: inline-flex; align-items: center; justify-content:center; gap: 8px; margin-top: 15px; width:100%; padding: 10px; border: 1px solid var(--green-sage); color: var(--text-dark); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 25px; transition: all .3s; }
 .btn-map-mini:hover { background: rgba(109,171,138,.1); }
 
 /* ════════════════════════════════════════════
    SCENE 4 — NASIHAT (BERGULIR)
 ════════════════════════════════════════════ */
-#s4 { background: linear-gradient(165deg, #091409 0%, #122A18 60%, #0A1A0D 100%); }
-.s4-content { display: flex; flex-direction: column; align-items: center; gap: clamp(0.6rem,2vw,1rem); text-align: center; z-index: 2; padding: clamp(20px,6vw,50px); width: 100%; }
-
-.qslide-wrap { width: 90%; position: relative; background: rgba(255,255,255,.04); border: 1px solid rgba(154,128,64,.18); padding: clamp(20px,5vw,30px) clamp(15px,4.5vw,25px); border-radius: 12px; min-height: 200px; overflow: hidden; display: flex; align-items: center;}
-.qslide-wrap::before { content: '"'; position: absolute; font-family: 'Cormorant Garamond', serif; font-size: clamp(4rem,12vw,7rem); color: #9A8040; opacity: .15; line-height: .4; top: clamp(14px,4vw,22px); left: clamp(14px,4vw,22px); pointer-events: none;}
-.qs-left-bar { position: absolute; top:0; left:0; bottom:0; width:4px; background: repeating-linear-gradient(180deg, #3D7055 0, #3D7055 6px, #6DAB8A 6px, #6DAB8A 12px, #9A8040 12px, #9A8040 18px, #1C3A28 18px, #1C3A28 24px); border-radius: 12px 0 0 12px;}
-
-.qs-inner { width: 100%; position: absolute; left: 0; padding: 0 20px; transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); opacity: 0; transform: translateX(30px); pointer-events: none; }
+.qslide-wrap { width: 100%; position: relative; min-height: 200px; overflow: hidden; display: flex; align-items: center;}
+.qslide-wrap::before { content: '"'; position: absolute; font-family: serif; font-size: 6rem; color: var(--green-sage); opacity: 0.15; top: 0px; left: -10px; pointer-events: none;}
+.qs-inner { width: 100%; position: absolute; left: 0; padding: 0; transition: opacity 0.6s ease, transform 0.6s ease; opacity: 0; transform: translateX(30px); pointer-events: none; }
 .qs-inner.active { opacity: 1; transform: translateX(0); pointer-events: all; position: relative;}
 .qs-inner.exit { opacity: 0; transform: translateX(-30px); position: absolute; }
-
-.qs-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(0.85rem, 2.6vw, 1rem); color: rgba(255,255,255,.88); line-height: 1.8; }
-.qs-src { margin-top: clamp(12px,2.5vw,16px); font-size: clamp(0.5rem,1.6vw,0.65rem); letter-spacing: 0.2em; text-transform: uppercase; color: #9A8040; }
-.qs-src small { display: block; opacity: .5; font-size: clamp(0.45rem,1.4vw,0.55rem); letter-spacing: .08em; text-transform: none; margin-top: 3px; }
-
-.qs-dots { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: clamp(15px,2.5vw,20px); width: 90%; }
-.qs-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(154,128,64,.28); cursor: pointer; border: none; padding: 0; transition: background .3s, transform .3s; }
-.qs-dot.on { background: #9A8040; transform: scale(1.6); }
+.qs-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: var(--text-dark); line-height: 1.8; }
+.qs-src { margin-top: 15px; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-dark); font-weight: 600;}
+.qs-src small { display: block; font-weight: 400; color: var(--text-muted); margin-top: 3px; text-transform: none; }
+.qs-dots { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 15px; }
+.qs-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(154,128,64,.3); cursor: pointer; border: none; padding: 0; transition: all .3s; }
+.qs-dot.on { background: var(--gold-dark); transform: scale(1.5); }
 
 /* ════════════════════════════════════════════
    SCENE 5 — BUKU TAMU
 ════════════════════════════════════════════ */
-#s5 { background: linear-gradient(165deg, #0A1A0D 0%, #0E2518 100%); overflow-y: auto; }
-.s5-content { display: flex; flex-direction: column; align-items: center; gap: clamp(0.6rem,2vw,1rem); text-align: center; z-index: 2; padding: clamp(16px,5vw,40px) clamp(16px,5vw,28px); width: 100%; min-height: 100%; }
-.wish-form-mini { width: 90%; background: rgba(255,255,255,.04); border: 1px solid rgba(154,128,64,.2); padding: clamp(16px,4vw,22px); position: relative; border-radius: 12px; overflow:hidden;}
-.wish-form-mini::before { content:''; position:absolute; top:0;left:0;bottom:0; width:4px; background: linear-gradient(180deg,#3D7055,#6DAB8A,#9A8040,#1C3A28); }
-.wf-input { width: 100%; padding: 12px; background: rgba(255,255,255,.05); border: 1px solid rgba(154,128,64,.2); color: #fff; font-family: 'Jost',sans-serif; font-size: 0.75rem; outline: none; margin-bottom: 10px; transition: border-color .3s; border-radius: 6px; -webkit-appearance:none; }
-.wf-input:focus { border-color: #6DAB8A; }
-.wf-input::placeholder { color: rgba(255,255,255,.25); }
+#s5 { overflow-y: auto; }
+.s5-content { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 30px 20px; width: 100%; }
+.wf-input { width: 100%; padding: 12px; background: rgba(253,253,253,0.9); border: 1px solid #ddd; color: var(--text-dark); font-family: 'Jost',sans-serif; font-size: 0.8rem; outline: none; margin-bottom: 10px; transition: border-color .3s; border-radius: 6px; }
+.wf-input:focus { border-color: var(--green-sage); }
 .wf-textarea { height: 80px; resize: none; }
-.wf-btn { width: 100%; padding: 12px; background: #1C3A28; color: #D9C88A; border: 1px solid rgba(154,128,64,.3); font-family: 'Jost',sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; display:flex; align-items:center; justify-content:center; gap:8px; transition: background .3s; border-radius: 6px;}
-.wf-btn:hover { background: #254D35; }
-.wish-list { width: 90%; max-height: 140px; overflow-y: auto; text-align: left; scrollbar-width: thin; scrollbar-color: #3D7055 transparent; }
-.wi { padding: 10px 0; border-bottom: 1px solid rgba(154,128,64,.1); animation: fadeInUp .5s; }
-.wi:last-child { border-bottom: none; }
-.wi-name { font-size: 0.7rem; letter-spacing:.05em; text-transform:uppercase; color: #6DAB8A; font-weight:500; margin-bottom:4px; }
-.wi-msg { font-size: 0.75rem; color: rgba(255,255,255,.6); line-height:1.65; }
+.wf-btn { width: 100%; padding: 12px; background: var(--text-dark); color: #fff; border: none; font-family: 'Jost',sans-serif; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; display:flex; align-items:center; justify-content:center; gap:8px; border-radius: 6px;}
+.wf-btn:hover { background: #2A523A; }
+.wish-list { width: 100%; max-height: 150px; overflow-y: auto; text-align: left; margin-top: 15px; padding-right: 5px; }
+.wi { padding: 10px; background: rgba(249,249,249,0.8); border-radius: 8px; margin-bottom: 8px; border-left: 3px solid var(--green-sage); animation: fadeInUp .5s; }
+.wi-name { font-size: 0.8rem; color: var(--text-dark); font-weight:600; margin-bottom:3px; }
+.wi-msg { font-size: 0.85rem; color: var(--text-muted); line-height:1.5; }
 
 /* ════════════════════════════════════════════
    SCENE 6 — CLOSING
 ════════════════════════════════════════════ */
-#s6 { background: radial-gradient(ellipse at 50% 40%, #0E2518 0%, #091409 70%, #030905 100%); }
-.s6-content { display:flex; flex-direction:column; align-items:center; gap:clamp(0.8rem,2.5vw,1.4rem); text-align:center; z-index:2; padding: clamp(20px,6vw,50px); }
-.btn-wa-big { display:inline-flex; align-items:center; gap:10px; padding: 12px 24px; background: #1C3A28; border: 1px solid rgba(154,128,64,.4); border-radius: 30px; color:#D9C88A; text-decoration:none; font-size: 0.7rem; letter-spacing:.15em; text-transform:uppercase; transition: all .3s; }
-.btn-wa-big:hover { background:#254D35; }
+.s6-content { display:flex; flex-direction:column; align-items:center; gap: 15px; text-align:center; padding: 40px 20px; }
+.btn-wa-big { display:inline-flex; align-items:center; gap:10px; padding: 12px 28px; background: #25D366; border-radius: 30px; color:#fff; text-decoration:none; font-size: 0.8rem; font-weight: 500; letter-spacing:0.1em; text-transform:uppercase; transition: all .3s; box-shadow: 0 5px 15px rgba(37,211,102,0.2);}
+.btn-wa-big:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(37,211,102,0.3);}
 
 /* ════════════════════════════════════════════
    BOTTOM NAV & HINT
 ════════════════════════════════════════════ */
 #nav { position: absolute; right: clamp(10px,2.5vw,15px); top: 50%; transform: translateY(-50%); display: flex; flex-direction:column; gap: 10px; z-index: 50; }
-.nav-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.2); cursor: pointer; transition: all .4s; border:none; padding:0; -webkit-tap-highlight-color:transparent; }
-.nav-dot.on { background: #9A8040; box-shadow: 0 0 10px rgba(154,128,64,.5); transform: scale(1.5); }
-.swipe-hint { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; flex-direction:row; align-items:center; color: rgba(109,171,138,.6); font-size: 0.6rem; letter-spacing:.15em; text-transform:uppercase; z-index: 4; pointer-events:none; animation: bob 2s ease-in-out infinite; white-space: nowrap; }
+.nav-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(154,128,64,0.3); cursor: pointer; transition: all .4s; border:none; padding:0; -webkit-tap-highlight-color:transparent; }
+.nav-dot.on { background: var(--gold-dark); transform: scale(1.5); }
+.swipe-hint { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: var(--green-sage); font-size: 0.65rem; letter-spacing:0.2em; text-transform:uppercase; z-index: 4; pointer-events:none; animation: bob 2s ease-in-out infinite; white-space: nowrap; font-weight: 500;}
 
 /* ════════════════════════════════════════════
-   SECTION HEADING SYSTEM
-════════════════════════════════════════════ */
-.sec-label { font-size: clamp(0.5rem,1.7vw,0.65rem); letter-spacing:.3em; text-transform:uppercase; color: #6DAB8A; }
-.sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem,6vw,2.6rem); font-weight:300; color:#fff; line-height:1.15; }
-.sec-orn { display:flex; align-items:center; gap:8px; justify-content:center; }
-.sec-orn::before,.sec-orn::after { content:''; flex:1; max-width:clamp(30px,8vw,55px); height:1px; background:linear-gradient(90deg,transparent,#9A8040,transparent); }
-.sec-orn-dot { width:6px; height:6px; background:#9A8040; border-radius:50%; position:relative; flex-shrink:0; transform: rotate(45deg); }
-
-/* ════════════════════════════════════════════
-   ANIMATIONS & UTILS
+   ANIMATIONS & AUDIO BUTTON
 ════════════════════════════════════════════ */
 @keyframes fadeInUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
 @keyframes fadeInDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes rotateSlow { to { transform:rotate(360deg); } }
-@keyframes heartBeat { 0%,100%{transform:scale(1)} 15%{transform:scale(1.22)} 30%{transform:scale(1)} 45%{transform:scale(1.1)} }
 @keyframes scaleIn { from { opacity:0; transform:scale(.85); } to { opacity:1; transform:scale(1); } }
 @keyframes slideInLeft { from { opacity:0; transform:translateX(-30px); } to { opacity:1; transform:translateX(0); } }
 @keyframes slideInRight { from { opacity:0; transform:translateX(30px); } to { opacity:1; transform:translateX(0); } }
-@keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(4px)} }
+@keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(5px)} }
+@keyframes heartBeat { 0%,100%{transform:scale(1)} 15%{transform:scale(1.22)} 30%{transform:scale(1)} 45%{transform:scale(1.1)} }
 
 .scene.active .anim-fade { animation: fadeIn 1s forwards; }
 .scene.active .anim-up   { animation: fadeInUp 1s forwards; }
@@ -261,13 +241,9 @@ input, textarea { -webkit-user-select: auto; user-select: auto; }
 
 .scene .anim-fade,.scene .anim-up,.scene .anim-down,.scene .anim-scale,.scene .anim-left,.scene .anim-right { opacity: 0; animation-fill-mode: forwards; }
 
-.glow-a { position:absolute; border-radius:50%; background: radial-gradient(circle, rgba(61,112,85,.22) 0%, transparent 70%); pointer-events:none; animation: glowPulse 6s ease-in-out infinite; }
-@keyframes glowPulse { 0%,100%{opacity:.6; transform:scale(1)} 50%{opacity:1; transform:scale(1.15)} }
-
-/* Audio Button */
-#audio-btn { position:absolute; top:clamp(10px,3vw,18px); right:clamp(10px,3vw,18px); width:clamp(36px,10vw,44px); height:clamp(36px,10vw,44px); border-radius:50%; background: rgba(28,58,40,.8); border: 1px solid rgba(154,128,64,.4); color:#D9C88A; font-size:clamp(0.7rem,2.2vw,0.85rem); display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:60; backdrop-filter:blur(10px); -webkit-tap-highlight-color:transparent; transition:all .3s; }
-#audio-btn:hover { background:rgba(61,112,85,.6); }
+#audio-btn { position:absolute; top:15px; right:15px; width:40px; height:40px; border-radius:50%; background: rgba(255,255,255,0.9); border: 1px solid #ddd; color:var(--text-dark); display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:60; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition:all .3s; }
 #audio-btn.playing i { animation:spin 3s linear infinite; }
+@keyframes spin { 100% { transform:rotate(360deg); } }
 </style>
 </head>
 <body>
@@ -281,6 +257,8 @@ input, textarea { -webkit-user-select: auto; user-select: auto; }
     <div class="floral-corner floral-br"></div>
   </div>
 
+  <div id="falling-container"></div>
+
   <audio id="bgm" loop preload="none">
     <source src="assets/audio/Muhammad_al_Muqit-Wedding.mp3" type="audio/mpeg">
   </audio>
@@ -292,101 +270,91 @@ input, textarea { -webkit-user-select: auto; user-select: auto; }
 
   <section class="scene active" id="s0" onclick="openInvitation(event)">
     <div class="s0-wrap">
-      
       <p class="s0-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
       <p class="s0-tagline">The Wedding Of</p>
       
-      <div class="s0-photo-wrapper">
-        <div class="s0-photo-ring"></div>
-        <div class="s0-photo">
-          <img src="assets/images/couple.jpg" alt="Abdullah & Aisyah" onerror="this.src='https://via.placeholder.com/300x300.png?text=Foto+Mempelai'">
-        </div>
+      <div class="s0-couple-frame">
+        <div class="s0-couple-vector"></div>
       </div>
       
-      <div class="s0-names">Abdullah <em style="font-family:'Alex Brush',cursive; font-size: 1.2em; display:block; margin: -10px 0; color:#6DAB8A;">&</em> Aisyah</div>
-      <p class="s0-tagline" style="letter-spacing: 0.35em; margin-top: 10px;">14 . 02 . 2026</p>
+      <div class="s0-names">Abdullah <em>&</em> Aisyah</div>
+      <p class="s0-tagline" style="letter-spacing: 0.3em; margin-top: 5px;">14 . 02 . 2026</p>
       
       <button class="btn-save-date" onclick="saveToGoogleCalendar(event)"><i class="far fa-calendar-check"></i> Save the Date</button>
-      <p class="s0-tap">✦ Ketuk untuk membuka ✦</p>
-      
+      <p class="s0-hint-text">Tekan layar untuk membuka undangan</p>
+      <!-- <p class="s0-tap">✦ Ketuk Layar ✦</p> -->
     </div>
   </section>
 
   <section class="scene" id="s1">
-    <div class="glow-a" style="width:70%;height:50%;top:25%;left:15%;"></div>
-    <div class="s1-border" aria-hidden="true"></div>
-    <div class="s1-content">
-      <div class="anim-scale d0" style="margin-bottom: 10px;"><i class="fas fa-leaf" style="color:#D9C88A; font-size: 1.5rem;"></i></div>
+    <div class="content-card">
+      <div class="anim-scale d0" style="margin-bottom: 5px;"><i class="fas fa-leaf" style="color:var(--gold-dark); font-size: 1.5rem;"></i></div>
       <p class="s1-arabic anim-fade d1">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
-      <div class="s1-divider anim-scale d2"></div>
+      <div class="sec-orn anim-scale d2"><div class="sec-orn-dot"></div></div>
       <p class="s1-ayat anim-up d3">"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya..."</p>
       <span class="s1-ref anim-fade d4">QS. Ar-Rum: 21</span>
-      <div class="sec-orn anim-scale d5"><div class="sec-orn-dot"></div></div>
     </div>
     <div class="swipe-hint" aria-hidden="true"><span>‹ Ketuk Kiri  |  Kanan ›</span></div>
   </section>
 
   <section class="scene" id="s2">
-    <div class="s2-bg-circle" style="width:80%;height:60%;top:10%;left:10%"></div>
-    <div class="s2-content">
+    <div class="content-card">
       <p class="sec-label anim-down d0">Dengan Ridha Allah ﷻ</p>
-      <h2 class="sec-title anim-up d1">Kami Mengundang</h2>
+      <h2 class="sec-title anim-up d1">Sang Mempelai</h2>
       <div class="sec-orn anim-scale d2"><div class="sec-orn-dot"></div></div>
+      
       <div class="s2-family-row anim-fade d2">
         <div class="s2-family-card anim-left d3">
-          <div class="s2-photo"><div class="s2-photo-ring"></div><div class="s2-photo-inner pa"><i class="fas fa-user-tie"></i></div></div>
-          <p class="s2-pname">Abdullah</p><p class="s2-ppar">Putra dari<br>Bapak H.Mas'uddin N.<br>& Ibu Hj.Siti Aisyah</p>
+          <div class="s2-photo"><i class="fas fa-user-tie"></i></div>
+          <p class="s2-pname">Abdullah</p>
+          <p class="s2-ppar">Putra dari<br>Bpk. H. Mas'uddin N.<br>& Ibu Hj. Siti Aisyah</p>
         </div>
-        <div class="s2-and-wrap anim-scale d4">
-          <div style="width:1px;height:clamp(20px,6vw,36px);background:rgba(154,128,64,.3)"></div>
-          <div class="s2-and-char">&</div>
-          <div style="width:1px;height:clamp(20px,6vw,36px);background:rgba(154,128,64,.3)"></div>
-        </div>
+        
+        <div class="s2-and-char anim-scale d4">&</div>
+        
         <div class="s2-family-card anim-right d3">
-          <div class="s2-photo"><div class="s2-photo-ring"></div><div class="s2-photo-inner pb"><i class="fas fa-female"></i></div></div>
-          <p class="s2-pname">Aisyah</p><p class="s2-ppar">Putri dari<br>Bapak Marhadi (Alm)<br>& Ibu Rohana</p>
+          <div class="s2-photo"><i class="fas fa-female"></i></div>
+          <p class="s2-pname">Aisyah</p>
+          <p class="s2-ppar">Putri dari<br>Bpk. Marhadi (Alm)<br>& Ibu Rohana</p>
         </div>
       </div>
-      <h2 class="s2-main-names anim-up d5"><em>Abdullah</em><span class="s2-and-char" style="font-size:clamp(1.2rem,4.5vw,1.8rem); display:inline; margin: 0 10px;">&</span><em>Aisyah</em></h2>
     </div>
     <div class="swipe-hint" aria-hidden="true"><span>‹ Ketuk Kiri  |  Kanan ›</span></div>
   </section>
 
   <section class="scene" id="s3">
     <div class="s3-content">
-      <h2 class="sec-title anim-up d0" style="margin-bottom: 10px;">Rangkaian Acara</h2>
+      <p class="sec-label anim-down d0">Jadwal Acara</p>
+      <h2 class="sec-title anim-up d0" style="margin-bottom: 5px;">Akad & Resepsi</h2>
       
       <div class="event-info-card anim-up d1">
-        <span class="event-chip" style="position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:#0A160D;">Akad Nikah</span>
-        <div class="event-info-row" style="margin-top:5px;"><span class="ev-icon">📅</span><span class="ev-text"><strong>Jumat, 14 Februari 2026</strong></span></div>
+        <span class="event-chip">Akad Nikah</span>
+        <div class="event-info-row" style="margin-top:10px;"><span class="ev-icon">📅</span><span class="ev-text"><strong>Jumat, 14 Februari 2026</strong></span></div>
         <div class="event-info-row"><span class="ev-icon">🕗</span><span class="ev-text">08.00 WITA — Selesai</span></div>
-        <div class="ev-sep"></div>
         <div class="event-info-row"><span class="ev-icon">🕌</span><span class="ev-text"><strong>Masjid Raya Sabilal Muhtadin</strong></span></div>
-        <a href="https://maps.google.com" target="_blank" class="btn-map-mini"><span>🗺</span> <span>Lihat di Maps</span></a>
+        <a href="https://maps.google.com" target="_blank" class="btn-map-mini"><i class="fas fa-map-marker-alt"></i> Lihat Peta</a>
       </div>
 
       <div class="event-info-card anim-up d2" style="margin-top: 15px;">
-        <span class="event-chip" style="position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:#0A160D;">Walimatul 'Ursy</span>
-        <div class="event-info-row" style="margin-top:5px;"><span class="ev-icon">📅</span><span class="ev-text"><strong>Jumat, 14 Februari 2026</strong></span></div>
+        <span class="event-chip" style="background:var(--green-sage);">Walimatul 'Ursy</span>
+        <div class="event-info-row" style="margin-top:10px;"><span class="ev-icon">📅</span><span class="ev-text"><strong>Jumat, 14 Februari 2026</strong></span></div>
         <div class="event-info-row"><span class="ev-icon">🕙</span><span class="ev-text">10.00 WITA — Selesai</span></div>
-        <div class="ev-sep"></div>
         <div class="event-info-row"><span class="ev-icon">🏛</span><span class="ev-text"><strong>Gedung Serbaguna Banjarbaru</strong></span></div>
-        <a href="https://maps.google.com" target="_blank" class="btn-map-mini"><span>🗺</span> <span>Lihat di Maps</span></a>
+        <a href="https://maps.google.com" target="_blank" class="btn-map-mini"><i class="fas fa-map-marker-alt"></i> Lihat Peta</a>
       </div>
     </div>
     <div class="swipe-hint" aria-hidden="true"><span>‹ Ketuk Kiri  |  Kanan ›</span></div>
   </section>
 
   <section class="scene" id="s4">
-    <div class="s4-content">
+    <div class="content-card">
       <p class="sec-label anim-down d0">Mutiara Hikmah</p>
-      <h2 class="sec-title anim-up d1">Nasihat Pernikahan</h2>
+      <h2 class="sec-title anim-up d1">Nasihat Nikah</h2>
       <div class="sec-orn anim-scale d2"><div class="sec-orn-dot"></div></div>
       
       <div class="qslide-wrap anim-up d3">
-        <div class="qs-left-bar"></div>
         <div id="qcontainer" style="width: 100%; position: relative; display: flex; align-items: center; min-height: 120px;">
-        </div>
+          </div>
       </div>
       <div class="qs-dots anim-fade d4" id="qsdots"></div>
     </div>
@@ -394,18 +362,17 @@ input, textarea { -webkit-user-select: auto; user-select: auto; }
   </section>
 
   <section class="scene" id="s5">
-    <div class="s5-content">
+    <div class="content-card">
       <p class="sec-label anim-down d0">Buku Tamu</p>
       <h2 class="sec-title anim-up d1">Sampaikan Doa</h2>
       <div class="sec-orn anim-scale d2"><div class="sec-orn-dot"></div></div>
       
-      <div class="wish-form-mini anim-up d3">
-        <form onsubmit="addWish(event)" novalidate>
-          <input class="wf-input" type="text" id="guestName" placeholder="Nama Anda" required autocomplete="name">
-          <textarea class="wf-input wf-textarea" id="guestMsg" placeholder="Tulis doa atau ucapan selamat..." required></textarea>
-          <button type="submit" class="wf-btn"><span>✉</span><span>Kirim Ucapan</span></button>
-        </form>
-      </div>
+      <form onsubmit="addWish(event)" novalidate style="width: 100%;" class="anim-up d3">
+        <input class="wf-input" type="text" id="guestName" placeholder="Nama Anda" required autocomplete="name">
+        <textarea class="wf-input wf-textarea" id="guestMsg" placeholder="Tulis ucapan dan doa..." required></textarea>
+        <button type="submit" class="wf-btn"><i class="far fa-paper-plane"></i> Kirim Ucapan</button>
+      </form>
+      
       <div class="wish-list anim-fade d4" id="wish-list">
         <div class="wi"><p class="wi-name">Keluarga Besar</p><p class="wi-msg">Barakallahu laka wa baraka 'alaika wa jama'a bainakuma fii khair.</p></div>
       </div>
@@ -414,16 +381,16 @@ input, textarea { -webkit-user-select: auto; user-select: auto; }
   </section>
 
   <section class="scene" id="s6">
-    <div class="glow-a" style="width:80%;height:60%;top:20%;left:10%;"></div>
-    <div class="s6-content">
+    <div class="content-card" style="background: transparent; border: none; box-shadow: none;">
       <p class="sec-label anim-down d1">Dengan Penuh Cinta</p>
-      <div class="sec-title anim-up d2" style="font-size: clamp(2.5rem,10vw,4rem);"><em>Abdullah</em><span style="font-family:'Alex Brush',cursive; color:#6DAB8A; margin: 0 10px;">&</span><em>Aisyah</em></div>
-      <p class="anim-fade d3" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(0.85rem,2.8vw,1.1rem);color:rgba(217,200,138,.6);letter-spacing:0.08em; margin-bottom: 20px;">Sakinah · Mawaddah · Warahmah</p>
+      <div class="sec-title anim-up d2" style="font-size: clamp(3rem,12vw,4.5rem);">Abdullah <span style="font-family:'Alex Brush',cursive; color:var(--green-sage); margin: 0 5px;">&</span> Aisyah</div>
+      <p class="anim-fade d3" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--text-muted); margin-bottom: 10px;">Sakinah · Mawaddah · Warahmah</p>
+      <div class="sec-orn anim-scale d3"><div class="sec-orn-dot"></div></div>
       
       <a href="https://wa.me/6281234567890?text=Assalamu'alaikum%2C%20saya%20ingin%20mengkonfirmasi%20kehadiran%20%2F%20berkoordinasi%20terkait%20tanda%20kasih%20untuk%20pernikahan%20Abdullah%20%26%20Aisyah." target="_blank" rel="noopener" class="btn-wa-big anim-up d4">
-        <span>💬</span><span>Konfirmasi & Tanda Kasih</span>
+        <i class="fab fa-whatsapp" style="font-size:1.2rem;"></i> Konfirmasi RSVP
       </a>
-      <p class="anim-fade d5" style="font-size: clamp(0.42rem,1.5vw,0.58rem); color: rgba(255,255,255,.2); letter-spacing:.1em; margin-top: 40px; text-transform:uppercase;">© 2026 · Didesain dengan cinta & doa</p>
+      <p class="anim-fade d5" style="font-size: 0.6rem; color: #999; letter-spacing:0.1em; margin-top: 30px; text-transform:uppercase;">© 2026 · Didesain dengan Cinta & Doa</p>
     </div>
   </section>
 
@@ -434,18 +401,19 @@ input, textarea { -webkit-user-select: auto; user-select: auto; }
 'use strict';
 
 /* ════════════════════════════════════════════
-   SISTEM GAMBAR JATUH YANG BISA DIUBAH
+   SISTEM DAUN & BUNGA GUGUR (Data URI 100% Anti Gagal)
 ════════════════════════════════════════════ */
+// Menggunakan SVG Code (Base64 URL encoded) alih-alih link eksternal. 
+// Ini menjamin gambar akan selalu muncul (anti diblokir).
 const FALLING_IMAGES = [
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23EACFCB'%3E%3Cpath d='M12 2 C16 2 20 6 20 12 C20 18 16 22 12 22 C6 22 4 18 4 12 C4 6 8 2 12 2 Z'/%3E%3C/svg%3E", 
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D9C88A'%3E%3Cpath d='M12 2 C20 6 22 14 12 22 C2 14 4 6 12 2 Z'/%3E%3C/svg%3E"
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F4C2C2'%3E%3Cpath d='M12 2C16 2 20 6 20 12C20 18 16 22 12 22C6 22 4 18 4 12C4 6 8 2 12 2Z'/%3E%3C/svg%3E", // Petal Bunga Pink Soft
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A9C4B3'%3E%3Cpath d='M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C14,6.25 16.5,7 17,8Z'/%3E%3C/svg%3E", // Daun Hijau Sage
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D9C88A'%3E%3Cpath d='M12 2.2c-.4 0-.8.3-1 .7l-1.3 3.6-3.8.6c-.4.1-.7.4-.8.8-.1.4 0 .9.3 1.2l2.8 2.5-1.1 3.7c-.1.4.1.9.4 1.1.4.3.8.3 1.2.1l3.2-2.1 3.2 2.1c.4.2.8.2 1.2-.1.3-.2.5-.7.4-1.1l-1.1-3.7 2.8-2.5c.3-.3.4-.8.3-1.2-.1-.4-.4-.7-.8-.8l-3.8-.6-1.3-3.6c-.2-.4-.6-.7-1-.7z'/%3E%3C/svg%3E" // Bunga Emas
 ];
 
 function initFlowers() {
-  const container = document.getElementById('bg-canvas');
-  const jumlahElemen = 18; 
-  
-  for(let i=0; i<jumlahElemen; i++) {
+  const container = document.getElementById('falling-container'); // Masuk ke layer khusus
+  for(let i=0; i<20; i++) {
     let f = document.createElement('div');
     f.className = 'bunga-gugur';
     let randomImg = FALLING_IMAGES[Math.floor(Math.random() * FALLING_IMAGES.length)];
@@ -453,10 +421,10 @@ function initFlowers() {
     f.style.left = (Math.random() * 100) + '%';
     f.style.setProperty('--dur', (12 + Math.random() * 15) + 's');
     f.style.setProperty('--del', '-' + (Math.random() * 10) + 's');
-    f.style.setProperty('--op', (0.15 + Math.random() * 0.25)); 
+    f.style.setProperty('--op', (0.3 + Math.random() * 0.4)); 
     f.style.setProperty('--drift', (Math.random() * 150 - 75) + 'px');
     f.style.setProperty('--rot', (Math.random() * 360) + 'deg');
-    let size = 12 + Math.random() * 14; 
+    let size = 12 + Math.random() * 15; 
     f.style.width = size + 'px';
     f.style.height = size + 'px';
     container.appendChild(f);
@@ -471,7 +439,7 @@ function saveToGoogleCalendar(e) {
   e.stopPropagation(); 
   const eventTitle = 'Pernikahan Abdullah & Aisyah';
   const eventLocation = 'Masjid Raya Sabilal Muhtadin, Jl. Jend Sudirman No.1, Banjarmasin';
-  const eventDescription = 'Akad Nikah: 14 Feb 2026, 08.00 WITA\nResepsi: 14 Feb 2026, 10.00 WITA di Gedung Serbaguna\nMohon doa restu.';
+  const eventDescription = 'Akad Nikah: 14 Feb 2026, 08.00 WITA\nResepsi: 14 Feb 2026, 10.00 WITA di Gedung Serbaguna Banjarbaru\nMohon doa restu.';
   
   const startDate = '20260214T080000';
   const endDate = '20260214T150000';
@@ -487,20 +455,18 @@ function saveToGoogleCalendar(e) {
 }
 
 /* ════════════════════════════════════════════
-   SCENE MANAGER & ANIMATION SYSTEM
+   SCENE MANAGER (TAP KIRI/KANAN)
 ════════════════════════════════════════════ */
 const SCENES = document.querySelectorAll('.scene');
 const NAV    = document.getElementById('nav');
-const TOTAL  = SCENES.length - 1; 
 
 let current = 0; 
 let isLocked = false; 
-const EASE = 'cubic-bezier(.4,0,.2,1)';
+const EASE = 'cubic-bezier(.25, 1, .5, 1)'; 
 
 for (let i = 1; i < SCENES.length; i++) {
   const btn = document.createElement('button');
   btn.className = 'nav-dot';
-  btn.setAttribute('aria-label', 'Scene ' + i);
   btn.onclick = (e) => { e.stopPropagation(); goTo(i); };
   NAV.appendChild(btn);
 }
@@ -536,7 +502,7 @@ function goTo(idx) {
 
   if (idx > 0) {
     toScene.style.opacity   = '0';
-    toScene.style.transform = `translateY(${direction * 40}px)`;
+    toScene.style.transform = `translateY(${direction * 30}px)`;
     toScene.style.pointerEvents = 'none';
   }
   toScene.classList.add('active');
@@ -573,7 +539,7 @@ function openInvitation(e) {
 
   setTimeout(() => {
     s0.classList.remove('active', 'closing');
-    s0.style.opacity = '0'; s0.style.transform = 'scale(1.1)'; s0.style.pointerEvents = 'none';
+    s0.style.opacity = '0'; s0.style.pointerEvents = 'none';
     goTo(1);
     if(!playing) toggleAudio();
   }, 800);
@@ -582,40 +548,22 @@ function openInvitation(e) {
 NAV.style.display = 'none';
 
 /* ════════════════════════════════════════════
-   TAP, SWIPE, & EVENT MANAGEMENT
+   TAP & EVENT MANAGEMENT
 ════════════════════════════════════════════ */
-let lastSwipeTime = 0;
+let lastTapTime = 0;
 
 document.getElementById('film').addEventListener('click', (e) => {
   if (current === 0) return; 
-  if (Date.now() - lastSwipeTime < 500) return;
+  if (Date.now() - lastTapTime < 500) return;
   if (e.target.closest('button, input, textarea, a, #nav, .qs-dots')) return;
 
   const rect = document.getElementById('film').getBoundingClientRect();
   const clickX = e.clientX - rect.left;
-  if (clickX < rect.width * 0.3) goTo(current - 1); 
+  lastTapTime = Date.now();
+  
+  if (clickX < rect.width * 0.4) goTo(current - 1); 
   else goTo(current + 1);
 });
-
-let touchStartX = 0, touchStartY = 0, touchStartTime = 0;
-document.getElementById('film').addEventListener('touchstart', e => {
-  if (current === 0) return; 
-  touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY;
-  touchStartTime = Date.now();
-}, { passive: true });
-
-document.getElementById('film').addEventListener('touchend', e => {
-  if (current === 0 || current === 5) return; 
-  const dy = touchStartY - e.changedTouches[0].clientY;
-  const dx = touchStartX - e.changedTouches[0].clientX;
-  const dt = Date.now() - touchStartTime;
-
-  if (dt < 400 && Math.abs(dy) > 40 && Math.abs(dy) > Math.abs(dx)) {
-    lastSwipeTime = Date.now();
-    if (dy > 0) goTo(current + 1);
-    else goTo(current - 1);
-  }
-}, { passive: true });
 
 document.addEventListener('keydown', e => {
   if(isLocked || current === 0) return;
@@ -630,14 +578,14 @@ const QUOTES = [
   { text: 'Sebaik-baik kalian adalah yang paling baik terhadap istrinya, dan aku adalah yang paling baik di antara kalian terhadap keluargaku.', src: '— HR. Tirmidzi', ref: 'Hadits Shahih' },
   { text: 'Carilah istri yang salehah, niscaya engkau akan beruntung.', src: '— HR. Bukhari & Muslim', ref: 'Muttafaq \'Alaih' },
   { text: 'Aku belum pernah melihat solusi untuk dua orang yang saling mencintai selain pernikahan.', src: '— HR. Ibnu Majah', ref: 'Hadits Hasan' },
-  { text: 'Perempuan itu dinikahi karena empat hal: hartanya, nasabnya, kecantikan, dan agamanya. Pilihlah yang beragama, niscaya engkau beruntung.', src: '— Imam Asy-Syafi\'i', ref: 'Tokoh Fikih Mazhab Syafi\'i' },
+  { text: 'Perempuan itu dinikahi karena empat hal: hartanya, nasabnya, kecantikan, dan agamanya. Pilihlah yang beragama, niscaya engkau beruntung.', src: '— Imam Asy-Syafi\'i', ref: 'Ulama Fikih' },
   { text: 'Pernikahan adalah separuh dari agama. Maka bertakwalah kepada Allah dalam separuh yang tersisa.', src: '— Imam Al-Ghazali', ref: 'Ihya\' \'Ulumiddin' },
-  { text: 'Jika suami memandang istrinya dengan penuh kasih, dan sang istri memandang suaminya dengan penuh kasih, maka Allah memandang keduanya dengan penuh rahmat.', src: '— Ibnu Qayyim Al-Jauziyyah', ref: 'Raudhah Al-Muhibbin' },
+  { text: 'Jika suami memandang istrinya dengan penuh kasih, dan sang istri memandang suaminya dengan penuh kasih, maka Allah memandang keduanya dengan penuh rahmat.', src: '— Ibnu Qayyim', ref: 'Raudhah Al-Muhibbin' },
   { text: 'Cinta yang didasarkan pada ketakwaan akan abadi. Janganlah engkau menikahkan putrimu kecuali dengan pria yang bertakwa.', src: '— Hasan Al-Basri', ref: 'Ulama Tabi\'in' },
   { text: 'Sakinah bukan berarti tanpa masalah, melainkan saat badai datang, kalian tetap bergandengan tangan menghadapinya bersama.', src: '— Buya Hamka', ref: 'Ulama Nusantara' },
   { text: 'Pernikahan yang dibangun di atas pondasi ketakwaan kepada Allah akan menjadi bangunan yang paling kokoh di dunia ini.', src: '— Syaikh Ibnu Utsaimin', ref: 'Ulama Kontemporer' },
-  { text: 'Menikah itu menumbuhkan cinta, bukan sekadar mencari cinta. Rawatlah ikatan itu dengan kesabaran dan keikhlasan.', src: '— KH. Maimun Zubair (Mbah Moen)', ref: 'Ulama Kharismatik Jawa' },
-  { text: 'Istri adalah anugerah terindah. Bimbinglah ia dengan kelembutan, perhatikan hatinya, karena dari ketenangannyalah lahir keturunan yang salih.', src: '— KH. Muhammad Zaini (Guru Sekumpul)', ref: 'Ulama Kharismatik Banjar' }
+  { text: 'Menikah itu menumbuhkan cinta, bukan sekadar mencari cinta. Rawatlah ikatan itu dengan kesabaran dan keikhlasan.', src: '— KH. Maimun Zubair', ref: 'Ulama Nusantara' },
+  { text: 'Istri adalah anugerah terindah. Bimbinglah ia dengan kelembutan, perhatikan hatinya, karena dari ketenangannyalah lahir keturunan yang salih.', src: '— KH. Muhammad Zaini', ref: 'Guru Sekumpul' }
 ];
 
 let qi = 0; let qTimer;
