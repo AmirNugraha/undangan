@@ -28,8 +28,8 @@
      GANTI URL GAMBAR BACKGROUND DAN BINGKAI BUNGA DI SINI 
      ======================================================= */
   --bg-pattern-url: url('https://www.transparenttextures.com/patterns/cream-paper.png'); /* Tekstur Kertas Air */
-  --floral-frame-top: url('https://via.placeholder.com/400x400.png?text=Bunga+Kiri+Atas'); /* Masukkan gambar bunga pojok kiri atas */
-  --floral-frame-bottom: url('https://via.placeholder.com/400x400.png?text=Bunga+Kanan+Bawah'); /* Masukkan gambar bunga pojok kanan bawah */
+   --floral-frame-top: url('assets/images/theme1.jpg');
+  --floral-frame-bottom: url('assets/images/theme1.jpg');
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -183,9 +183,9 @@ input, textarea { -webkit-user-select: auto; user-select: auto; }
     <div class="floral-corner floral-br"></div>
   </div>
 
-  <audio id="bgm" loop preload="none">
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  </audio>
+<audio id="bgm" loop preload="none">
+  <source src="assets/audio/Muhammad_al_Muqit-Wedding.mp3" type="audio/mpeg">
+</audio>
   <button id="audio-btn" onclick="toggleAudio()" aria-label="Putar musik"><i class="fas fa-music"></i></button>
 
   <nav id="nav" aria-label="Navigasi scene"></nav>
@@ -621,4 +621,5 @@ function toggleAudio() {
 }
 </script>
 </body>
+
 </html>
