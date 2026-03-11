@@ -95,11 +95,11 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
    LAYER 3: KONTEN KARTU (Paling Atas)
 ════════════════════════════════════════════ */
 .content-card {
-  background: rgba(255, 255, 255, 0.75); /* Transparan putih agar daun terlihat samar di belakang */
+  background: rgba(255, 255, 255, 0.75); 
   border: 1px solid rgba(154,128,64,0.2);
   border-radius: 15px; padding: 30px 20px;
   width: 90%; max-width: 350px;
-  backdrop-filter: blur(3px); /* Efek blur kaca */
+  backdrop-filter: blur(3px); 
   box-shadow: 0 10px 30px rgba(0,0,0,0.03);
   display: flex; flex-direction: column; align-items: center; text-align: center;
 }
@@ -113,19 +113,21 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 .s0-bismillah { font-family: 'Amiri', serif; font-size: clamp(2.2rem, 8vw, 3rem); color: var(--gold-dark); opacity: 0; animation: fadeInUp 1.4s 0.2s forwards; text-align: center; margin-bottom: 0.5rem; white-space: nowrap; }
 .s0-tagline { font-size: clamp(0.55rem, 2.2vw, 0.72rem); letter-spacing: 0.42em; text-transform: uppercase; color: var(--text-muted); opacity: 0; animation: fadeInUp 1.2s 0.6s forwards; margin-bottom: 0.5rem; }
 
-.s0-couple-frame { width: clamp(160px, 48vw, 220px); height: clamp(160px, 48vw, 220px); border-radius: 50%; border: 2px solid var(--gold-light); padding: 10px; background: #fff; box-shadow: 0 10px 30px rgba(154,128,64,0.15); margin: 15px 0 25px 0; position: relative; display: flex; justify-content: center; align-items: center; opacity: 0; overflow: hidden; animation: scaleIn 1.2s 1s forwards, floatCouple 6s 2s ease-in-out infinite, pulseFrame 3s 2s ease-in-out infinite; }
+.s0-couple-frame { width: clamp(140px, 40vw, 180px); height: clamp(140px, 40vw, 180px); border-radius: 50%; border: 2px solid var(--gold-light); padding: 10px; background: #fff; box-shadow: 0 10px 30px rgba(154,128,64,0.15); margin: 10px 0 15px 0; position: relative; display: flex; justify-content: center; align-items: center; opacity: 0; overflow: hidden; animation: scaleIn 1.2s 1s forwards, floatCouple 6s 2s ease-in-out infinite, pulseFrame 3s 2s ease-in-out infinite; }
 .s0-couple-vector { width: 95%; height: 95%; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg transform='translate(0,-5)'%3E%3C!-- Suami --%3E%3Ccircle cx='35' cy='25' r='10' fill='%236DAB8A'/%3E%3Cpath d='M35 35 L20 60 H50 L35 35' fill='%231a3626'/%3E%3Crect x='30' y='18' width='10' height='3' rx='1' fill='%23333'/%3E%3C/g%3E%3Cg transform='translate(0,5)'%3E%3C!-- Istri --%3E%3Ccircle cx='65' cy='28' r='9' fill='%23D9C88A'/%3E%3Cpath d='M65 37 C50 37 45 60 45 75 H85 C85 60 80 37 65 37 Z' fill='%23C5A866'/%3E%3C/g%3E%3C!-- Hati --%3E%3Cpath d='M50 45 C48 43 45 43 43 45 C41 47 41 50 43 52 L50 60 L57 52 C59 50 59 47 57 45 C55 43 52 43 50 45 Z' fill='%23c2411f'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; background-position: center; }
 
 @keyframes floatCouple { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 @keyframes pulseFrame { 0%, 100% { box-shadow: 0 10px 30px rgba(154,128,64,0.15); border-color: var(--gold-light); } 50% { box-shadow: 0 10px 40px rgba(154,128,64,0.3); border-color: var(--gold-dark); } }
 
-.s0-names { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 12vw, 4.5rem); font-weight: 400; color: var(--text-dark); opacity: 0; animation: fadeInUp 1.4s 1.2s forwards; line-height: 1; text-align: center; margin-bottom: 10px;}
-.s0-names em { color: var(--green-sage); font-style: italic; font-family: 'Alex Brush', cursive; font-size: 1.1em; display:block; margin: -15px 0 -5px 0;}
+.s0-names { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 10vw, 3.5rem); font-weight: 400; color: var(--text-dark); opacity: 0; animation: fadeInUp 1.4s 1.2s forwards; line-height: 1; text-align: center; margin-bottom: 5px;}
+.s0-names em { color: var(--green-sage); font-style: italic; font-family: 'Alex Brush', cursive; font-size: 1.1em; display:block; margin: -10px 0 -5px 0;}
 
-.btn-save-date { display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; background: transparent; color: var(--gold-dark); border: 1px solid var(--gold-dark); border-radius: 30px; font-family: 'Jost', sans-serif; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; opacity: 0; animation: fadeInUp 1s 1.8s forwards; margin-top: 15px;}
-.btn-save-date:hover { background: rgba(154,128,64,0.05); transform: scale(0.95);}
+/* AREA NAMA TAMU */
+.s0-guest-wrap { margin: 15px 0; padding: 12px 20px; background: rgba(255,255,255,0.7); border: 1px solid rgba(154,128,64,0.3); border-radius: 12px; opacity: 0; animation: fadeInUp 1s 1.8s forwards; text-align: center; width: 80%; max-width: 300px; box-shadow: 0 5px 15px rgba(0,0,0,0.02);}
+.s0-guest-label { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; }
+.s0-guest-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--gold-dark); line-height: 1.2; }
 
-.s0-hint-text { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-sage); opacity: 0; animation: fadeInUp 1s 2s forwards, pulseHint 2s 3s infinite; margin-top: 1rem; }
+.s0-hint-text { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-sage); opacity: 0; animation: fadeInUp 1s 2s forwards, pulseHint 2s 3s infinite; margin-top: 1rem; }
 @keyframes pulseHint { 0%, 100% { opacity: 0.8; } 50% { opacity: 0.3; } }
 .s0-tap { font-size: clamp(0.55rem, 2vw, 0.68rem); letter-spacing: 0.35em; text-transform: uppercase; color: var(--green-sage); opacity: 0; animation: fadeInUp 1s 2.4s forwards, pulseHint 2s 3.5s infinite; margin-top: 0.5rem; cursor:pointer;}
 
@@ -203,9 +205,12 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 .wi-msg { font-size: 0.85rem; color: var(--text-muted); line-height:1.5; }
 
 /* ════════════════════════════════════════════
-   SCENE 6 — CLOSING
+   SCENE 6 — CLOSING & SAVE DATE
 ════════════════════════════════════════════ */
 .s6-content { display:flex; flex-direction:column; align-items:center; gap: 15px; text-align:center; padding: 40px 20px; }
+.btn-save-date-big { display:inline-flex; align-items:center; gap:8px; padding: 10px 24px; background: transparent; color: var(--gold-dark); border: 1px solid var(--gold-dark); border-radius: 30px; font-family: 'Jost', sans-serif; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; margin-top: 5px; margin-bottom: 15px;}
+.btn-save-date-big:hover { background: rgba(154,128,64,0.05); transform: scale(0.95);}
+
 .btn-wa-big { display:inline-flex; align-items:center; gap:10px; padding: 12px 28px; background: #25D366; border-radius: 30px; color:#fff; text-decoration:none; font-size: 0.8rem; font-weight: 500; letter-spacing:0.1em; text-transform:uppercase; transition: all .3s; box-shadow: 0 5px 15px rgba(37,211,102,0.2);}
 .btn-wa-big:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(37,211,102,0.3);}
 
@@ -280,9 +285,13 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
       <div class="s0-names">Abdullah <em>&</em> Aisyah</div>
       <p class="s0-tagline" style="letter-spacing: 0.3em; margin-top: 5px;">14 . 02 . 2026</p>
       
-      <button class="btn-save-date" onclick="saveToGoogleCalendar(event)"><i class="far fa-calendar-check"></i> Save the Date</button>
+      <div class="s0-guest-wrap">
+        <p class="s0-guest-label">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+        <div class="s0-guest-name" id="guestNameDisplay">Tamu Undangan</div>
+      </div>
+      
       <p class="s0-hint-text">Tekan layar untuk membuka undangan</p>
-      <!-- <p class="s0-tap">✦ Ketuk Layar ✦</p> -->
+      <p class="s0-tap">✦ Ketuk Layar ✦</p>
     </div>
   </section>
 
@@ -387,6 +396,8 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
       <p class="anim-fade d3" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--text-muted); margin-bottom: 10px;">Sakinah · Mawaddah · Warahmah</p>
       <div class="sec-orn anim-scale d3"><div class="sec-orn-dot"></div></div>
       
+      <button class="btn-save-date-big anim-up d4" onclick="saveToGoogleCalendar(event)"><i class="far fa-calendar-check"></i> Save the Date</button>
+      
       <a href="https://wa.me/6281234567890?text=Assalamu'alaikum%2C%20saya%20ingin%20mengkonfirmasi%20kehadiran%20%2F%20berkoordinasi%20terkait%20tanda%20kasih%20untuk%20pernikahan%20Abdullah%20%26%20Aisyah." target="_blank" rel="noopener" class="btn-wa-big anim-up d4">
         <i class="fab fa-whatsapp" style="font-size:1.2rem;"></i> Konfirmasi RSVP
       </a>
@@ -401,18 +412,31 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 'use strict';
 
 /* ════════════════════════════════════════════
-   SISTEM DAUN & BUNGA GUGUR (Data URI 100% Anti Gagal)
+   SISTEM NAMA TAMU DINAMIS DARI URL (?to=Nama)
 ════════════════════════════════════════════ */
-// Menggunakan SVG Code (Base64 URL encoded) alih-alih link eksternal. 
-// Ini menjamin gambar akan selalu muncul (anti diblokir).
+function setGuestName() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const guestName = urlParams.get('to');
+  
+  if (guestName) {
+    // Memasukkan nama tamu ke elemen HTML, mencegah XSS dengan textContent
+    document.getElementById('guestNameDisplay').textContent = guestName;
+  }
+}
+// Jalankan saat halaman dimuat
+setGuestName();
+
+/* ════════════════════════════════════════════
+   SISTEM DAUN & BUNGA GUGUR (Data URI)
+════════════════════════════════════════════ */
 const FALLING_IMAGES = [
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F4C2C2'%3E%3Cpath d='M12 2C16 2 20 6 20 12C20 18 16 22 12 22C6 22 4 18 4 12C4 6 8 2 12 2Z'/%3E%3C/svg%3E", // Petal Bunga Pink Soft
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A9C4B3'%3E%3Cpath d='M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C14,6.25 16.5,7 17,8Z'/%3E%3C/svg%3E", // Daun Hijau Sage
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D9C88A'%3E%3Cpath d='M12 2.2c-.4 0-.8.3-1 .7l-1.3 3.6-3.8.6c-.4.1-.7.4-.8.8-.1.4 0 .9.3 1.2l2.8 2.5-1.1 3.7c-.1.4.1.9.4 1.1.4.3.8.3 1.2.1l3.2-2.1 3.2 2.1c.4.2.8.2 1.2-.1.3-.2.5-.7.4-1.1l-1.1-3.7 2.8-2.5c.3-.3.4-.8.3-1.2-.1-.4-.4-.7-.8-.8l-3.8-.6-1.3-3.6c-.2-.4-.6-.7-1-.7z'/%3E%3C/svg%3E" // Bunga Emas
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F4C2C2'%3E%3Cpath d='M12 2C16 2 20 6 20 12C20 18 16 22 12 22C6 22 4 18 4 12C4 6 8 2 12 2Z'/%3E%3C/svg%3E",
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A9C4B3'%3E%3Cpath d='M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C14,6.25 16.5,7 17,8Z'/%3E%3C/svg%3E",
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D9C88A'%3E%3Cpath d='M12 2.2c-.4 0-.8.3-1 .7l-1.3 3.6-3.8.6c-.4.1-.7.4-.8.8-.1.4 0 .9.3 1.2l2.8 2.5-1.1 3.7c-.1.4.1.9.4 1.1.4.3.8.3 1.2.1l3.2-2.1 3.2 2.1c.4.2.8.2 1.2-.1.3-.2.5-.7.4-1.1l-1.1-3.7 2.8-2.5c.3-.3.4-.8.3-1.2-.1-.4-.4-.7-.8-.8l-3.8-.6-1.3-3.6c-.2-.4-.6-.7-1-.7z'/%3E%3C/svg%3E"
 ];
 
 function initFlowers() {
-  const container = document.getElementById('falling-container'); // Masuk ke layer khusus
+  const container = document.getElementById('falling-container');
   for(let i=0; i<20; i++) {
     let f = document.createElement('div');
     f.className = 'bunga-gugur';
@@ -534,6 +558,9 @@ function openInvitation(e) {
   const s0 = document.getElementById('s0');
   if (s0.classList.contains('closing') || isLocked) return;
 
+  // Cek apakah yang di-klik adalah tombol Save the Date, jika ya jangan tutup cover
+  if(e.target.closest('button')) return;
+
   s0.classList.add('closing');
   NAV.style.display = 'flex';
 
@@ -572,7 +599,7 @@ document.addEventListener('keydown', e => {
 });
 
 /* ════════════════════════════════════════════
-   NASIHAT SLIDER (BERGULIR MULUS)
+   NASIHAT SLIDER
 ════════════════════════════════════════════ */
 const QUOTES = [
   { text: 'Sebaik-baik kalian adalah yang paling baik terhadap istrinya, dan aku adalah yang paling baik di antara kalian terhadap keluargaku.', src: '— HR. Tirmidzi', ref: 'Hadits Shahih' },
