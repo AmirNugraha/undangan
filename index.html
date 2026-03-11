@@ -122,10 +122,10 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 .s0-names { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 10vw, 3.5rem); font-weight: 400; color: var(--text-dark); opacity: 0; animation: fadeInUp 1.4s 1.2s forwards; line-height: 1; text-align: center; margin-bottom: 5px;}
 .s0-names em { color: var(--green-sage); font-style: italic; font-family: 'Alex Brush', cursive; font-size: 1.1em; display:block; margin: -10px 0 -5px 0;}
 
-/* AREA NAMA TAMU */
-.s0-guest-wrap { margin: 15px 0; padding: 12px 20px; background: rgba(255,255,255,0.7); border: 1px solid rgba(154,128,64,0.3); border-radius: 12px; opacity: 0; animation: fadeInUp 1s 1.8s forwards; text-align: center; width: 80%; max-width: 300px; box-shadow: 0 5px 15px rgba(0,0,0,0.02);}
+/* AREA NAMA TAMU (SUDAH DIPERBAIKI) */
+.s0-guest-wrap { margin: 15px 0; padding: 12px 20px; background: rgba(255,255,255,0.7); border: 1px solid rgba(154,128,64,0.3); border-radius: 12px; opacity: 0; animation: fadeInUp 1s 1.8s forwards; text-align: center; width: 85%; max-width: 320px; box-shadow: 0 5px 15px rgba(0,0,0,0.02);}
 .s0-guest-label { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; }
-.s0-guest-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--gold-dark); line-height: 1.2; }
+.s0-guest-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--gold-dark); line-height: 1.2; overflow-wrap: break-word; word-wrap: break-word; hyphens: auto;}
 
 .s0-hint-text { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-sage); opacity: 0; animation: fadeInUp 1s 2s forwards, pulseHint 2s 3s infinite; margin-top: 1rem; }
 @keyframes pulseHint { 0%, 100% { opacity: 0.8; } 50% { opacity: 0.3; } }
@@ -413,14 +413,22 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 
 /* ════════════════════════════════════════════
    SISTEM NAMA TAMU DINAMIS DARI URL (?to=Nama)
+   DITAMBAHKAN SMART RESIZING UNTUK NAMA PANJANG
 ════════════════════════════════════════════ */
 function setGuestName() {
   const urlParams = new URLSearchParams(window.location.search);
   const guestName = urlParams.get('to');
+  const displayEl = document.getElementById('guestNameDisplay');
   
   if (guestName) {
-    // Memasukkan nama tamu ke elemen HTML, mencegah XSS dengan textContent
-    document.getElementById('guestNameDisplay').textContent = guestName;
+    displayEl.textContent = guestName;
+    
+    // Logika mengecilkan font jika karakter nama terlalu panjang
+    if (guestName.length > 25) {
+      displayEl.style.fontSize = "1rem";
+    } else if (guestName.length > 15) {
+      displayEl.style.fontSize = "1.2rem";
+    }
   }
 }
 // Jalankan saat halaman dimuat
