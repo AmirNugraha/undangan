@@ -63,6 +63,14 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
   background: var(--scene-bg);
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Reduce animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .bunga-gugur, .gold-particle, .gold-dust, .botanical-float, .leaf-spin, .petal-drift { display: none !important; }
 }
 
 /* ════════════════════════════════════════════
@@ -418,9 +426,9 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 /* ── S0 Tumpukan Pojok Kiri Bawah ── */
 .s0-plant-bl {
   position: absolute; bottom: -15px; left: -15px;
-  width: clamp(130px, 40vw, 220px); height: clamp(180px, 48vh, 340px);
+  width: clamp(140px, 42vw, 240px); height: clamp(200px, 55vh, 380px);
   z-index: 4; pointer-events: none;
-  background-image: url('assets/images/flow3.png');
+  background-image: url('assets/images/corner-left1.png');
   background-size: contain; background-position: bottom left; background-repeat: no-repeat;
   opacity: 0;
   animation: cinematicRevealBL 2s cubic-bezier(.16,1,.3,1) 0.6s forwards, windSwayPlantBL 9s ease-in-out 2.6s infinite alternate;
@@ -428,9 +436,9 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 }
 .s0-plant-bl2 {
   position: absolute; bottom: -10px; left: 20px;
-  width: clamp(90px, 28vw, 160px); height: clamp(130px, 35vh, 240px);
+  width: clamp(80px, 22vw, 130px); height: clamp(100px, 28vh, 180px);
   z-index: 3; pointer-events: none;
-  background-image: url('assets/images/bunga mekar.PNG');
+  background-image: url('assets/images/daun ruas.PNG');
   background-size: contain; background-position: bottom left; background-repeat: no-repeat;
   opacity: 0;
   animation: cinematicRevealBL 2s cubic-bezier(.16,1,.3,1) 0.8s forwards, windSwayPlant 11s ease-in-out 2.8s infinite alternate;
@@ -462,9 +470,9 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 /* ── S0 Tumpukan Pojok Kanan Bawah ── */
 .s0-plant-br {
   position: absolute; bottom: -15px; right: -15px;
-  width: clamp(110px, 34vw, 190px); height: clamp(160px, 44vh, 300px);
+  width: clamp(120px, 36vw, 200px); height: clamp(170px, 46vh, 300px);
   z-index: 4; pointer-events: none;
-  background-image: url('assets/images/double bunga.PNG');
+  background-image: url('assets/images/flow2.png');
   background-size: contain; background-position: bottom right; background-repeat: no-repeat;
   opacity: 0; transform: scaleX(-1);
   animation: cinematicRevealBR 2s cubic-bezier(.16,1,.3,1) 0.5s forwards, windSwayPlant 10s ease-in-out 2.5s infinite alternate;
@@ -472,9 +480,9 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 }
 .s0-plant-br2 {
   position: absolute; bottom: 20px; right: 10px;
-  width: clamp(75px, 22vw, 120px); height: clamp(100px, 28vh, 170px);
+  width: clamp(70px, 20vw, 110px); height: clamp(90px, 25vh, 150px);
   z-index: 3; pointer-events: none;
-  background-image: url('assets/images/kembang.PNG');
+  background-image: url('assets/images/kembang-tangkai.PNG');
   background-size: contain; background-position: bottom right; background-repeat: no-repeat;
   opacity: 0; transform: scaleX(-1);
   animation: cinematicRevealBR 2s cubic-bezier(.16,1,.3,1) 0.7s forwards, windSwayPlantBL 11s ease-in-out 2.7s infinite alternate;
@@ -798,18 +806,17 @@ button, a, .qs-dot { min-height: 28px; min-width: 28px; }
 
   <!-- ═══════ SCENE 1: BISMILLAH ═══════ -->
   <section class="scene" id="s1">
-    <!-- Kiri atas: flora1 besar + daun ruas kecil di depan -->
+    <!-- TL: flora1 + palm -->
     <div class="scene-decor dec-flora1 pos-tl sz-xl sd-tl"></div>
     <div class="scene-decor dec-palm pos-tl2 sz-sm sd-tl"></div>
-    <div class="scene-decor dec-daunbunga pos-tl3 sz-xs sd-tl"></div>
-    <!-- Kanan atas: daun monstera + kembang tangkai -->
-    <div class="scene-decor dec-daun pos-tr sz-lg sd-tr mirror-x"></div>
-    <div class="scene-decor dec-golden pos-tr2 sz-sm sd-tr mirror-x"></div>
-    <!-- Kiri bawah: flow3 + bunga mekar -->
+    <!-- TR: flora2 mirror + golden -->
+    <div class="scene-decor dec-flora2 pos-tr sz-lg sd-tr mirror-x"></div>
+    <div class="scene-decor dec-golden pos-tr2 sz-xs sd-tr mirror-x"></div>
+    <!-- BL: flora3 + bunga -->
     <div class="scene-decor dec-flora3 pos-bl sz-lg sd-bl"></div>
     <div class="scene-decor dec-bunga pos-bl2 sz-sm sd-bl"></div>
-    <!-- Kanan bawah: flow2 mirror + kembang -->
-    <div class="scene-decor dec-flora2 pos-br sz-lg sd-br mirror-x"></div>
+    <!-- BR: daun mirror + kembang -->
+    <div class="scene-decor dec-daun pos-br sz-lg sd-br mirror-x"></div>
     <div class="scene-decor dec-kembang pos-br2 sz-xs sd-br mirror-x"></div>
     <div class="breathing-border"></div>
     <div class="shimmer-line shimmer-top"></div>
@@ -830,19 +837,18 @@ button, a, .qs-dot { min-height: 28px; min-width: 28px; }
 
   <!-- ═══════ SCENE 2: MEMPELAI ═══════ -->
   <section class="scene" id="s2">
-    <!-- Kiri atas: flora2 + ginkgo kecil -->
-    <div class="scene-decor dec-flora2 pos-tl sz-lg sd-tl"></div>
-    <div class="scene-decor dec-ginkgo pos-tl2 sz-sm sd-tl"></div>
-    <!-- Kanan atas: flora3 mirror + palm kecil -->
-    <div class="scene-decor dec-flora3 pos-tr sz-lg sd-tr mirror-x"></div>
-    <div class="scene-decor dec-palm pos-tr2 sz-sm sd-tr mirror-x"></div>
-    <div class="scene-decor dec-kembang pos-tr3 sz-xs sd-tr mirror-x"></div>
-    <!-- Kiri bawah: flora1 + bunga mekar -->
+    <!-- TL: flora3 + bunga (sambungan BL scene 1) -->
+    <div class="scene-decor dec-flora3 pos-tl sz-lg sd-tl"></div>
+    <div class="scene-decor dec-bunga pos-tl2 sz-sm sd-tl"></div>
+    <!-- TR: daun + kembang (sambungan BR scene 1) -->
+    <div class="scene-decor dec-daun pos-tr sz-lg sd-tr mirror-x"></div>
+    <div class="scene-decor dec-kembang pos-tr2 sz-xs sd-tr mirror-x"></div>
+    <!-- BL: flora1 + ginkgo -->
     <div class="scene-decor dec-flora1 pos-bl sz-xl sd-bl"></div>
-    <div class="scene-decor dec-bunga pos-bl2 sz-sm sd-bl"></div>
-    <!-- Kanan bawah: daun + golden -->
-    <div class="scene-decor dec-daun pos-br sz-md sd-br mirror-x"></div>
-    <div class="scene-decor dec-golden pos-br2 sz-xs sd-br mirror-x"></div>
+    <div class="scene-decor dec-ginkgo pos-bl2 sz-sm sd-bl"></div>
+    <!-- BR: flora2 mirror + daunbunga -->
+    <div class="scene-decor dec-flora2 pos-br sz-lg sd-br mirror-x"></div>
+    <div class="scene-decor dec-daunbunga pos-br2 sz-sm sd-br mirror-x"></div>
     <div class="breathing-border"></div>
     <div class="shimmer-line shimmer-top"></div>
     <div class="shimmer-line shimmer-bot"></div>
@@ -870,19 +876,18 @@ button, a, .qs-dot { min-height: 28px; min-width: 28px; }
 
   <!-- ═══════ SCENE 3: AKAD NIKAH ═══════ -->
   <section class="scene" id="s3">
-    <!-- Kiri atas: daun monstera + daunbunga -->
-    <div class="scene-decor dec-daun pos-tl sz-lg sd-tl"></div>
-    <div class="scene-decor dec-daunbunga pos-tl2 sz-sm sd-tl"></div>
-    <!-- Kanan atas: flora1 mirror + golden -->
-    <div class="scene-decor dec-flora1 pos-tr sz-lg sd-tr mirror-x"></div>
-    <div class="scene-decor dec-golden pos-tr2 sz-xs sd-tr mirror-x"></div>
-    <!-- Kiri bawah: flora2 + kembang -->
-    <div class="scene-decor dec-flora2 pos-bl sz-lg sd-bl"></div>
-    <div class="scene-decor dec-kembang pos-bl2 sz-xs sd-bl"></div>
-    <!-- Kanan bawah: flora3 mirror + ginkgo + bunga -->
-    <div class="scene-decor dec-flora3 pos-br sz-lg sd-br mirror-x"></div>
-    <div class="scene-decor dec-ginkgo pos-br2 sz-sm sd-br mirror-x"></div>
-    <div class="scene-decor dec-bunga pos-br3 sz-xs sd-br"></div>
+    <!-- TL: flora1 + ginkgo (sambungan BL scene 2) -->
+    <div class="scene-decor dec-flora1 pos-tl sz-xl sd-tl"></div>
+    <div class="scene-decor dec-ginkgo pos-tl2 sz-sm sd-tl"></div>
+    <!-- TR: flora2 mirror + daunbunga (sambungan BR scene 2) -->
+    <div class="scene-decor dec-flora2 pos-tr sz-lg sd-tr mirror-x"></div>
+    <div class="scene-decor dec-daunbunga pos-tr2 sz-sm sd-tr mirror-x"></div>
+    <!-- BL: flora3 + palm -->
+    <div class="scene-decor dec-flora3 pos-bl sz-lg sd-bl"></div>
+    <div class="scene-decor dec-palm pos-bl2 sz-sm sd-bl"></div>
+    <!-- BR: daun mirror + golden -->
+    <div class="scene-decor dec-daun pos-br sz-lg sd-br mirror-x"></div>
+    <div class="scene-decor dec-golden pos-br2 sz-xs sd-br mirror-x"></div>
     <div class="breathing-border"></div>
     <div class="shimmer-line shimmer-top"></div>
     <div class="shimmer-line shimmer-bot"></div>
@@ -905,18 +910,17 @@ button, a, .qs-dot { min-height: 28px; min-width: 28px; }
 
   <!-- ═══════ SCENE 4: WALIMATUL URSY ═══════ -->
   <section class="scene" id="s4">
-    <!-- Kiri atas: flora3 + palm kecil -->
+    <!-- TL: flora3 + palm (sambungan BL scene 3) -->
     <div class="scene-decor dec-flora3 pos-tl sz-lg sd-tl"></div>
     <div class="scene-decor dec-palm pos-tl2 sz-sm sd-tl"></div>
-    <div class="scene-decor dec-bunga pos-tl3 sz-xs sd-tl"></div>
-    <!-- Kanan atas: flora2 mirror + daunbunga -->
-    <div class="scene-decor dec-flora2 pos-tr sz-lg sd-tr mirror-x"></div>
-    <div class="scene-decor dec-daunbunga pos-tr2 sz-sm sd-tr mirror-x"></div>
-    <!-- Kiri bawah: daun + golden -->
-    <div class="scene-decor dec-daun pos-bl sz-md sd-bl"></div>
-    <div class="scene-decor dec-golden pos-bl2 sz-xs sd-bl"></div>
-    <!-- Kanan bawah: flora1 mirror + ginkgo -->
-    <div class="scene-decor dec-flora1 pos-br sz-xl sd-br mirror-x"></div>
+    <!-- TR: daun + golden (sambungan BR scene 3) -->
+    <div class="scene-decor dec-daun pos-tr sz-lg sd-tr mirror-x"></div>
+    <div class="scene-decor dec-golden pos-tr2 sz-xs sd-tr mirror-x"></div>
+    <!-- BL: flora1 + bunga -->
+    <div class="scene-decor dec-flora1 pos-bl sz-xl sd-bl"></div>
+    <div class="scene-decor dec-bunga pos-bl2 sz-sm sd-bl"></div>
+    <!-- BR: flora2 mirror + kembang -->
+    <div class="scene-decor dec-flora2 pos-br sz-lg sd-br mirror-x"></div>
     <div class="scene-decor dec-kembang pos-br2 sz-xs sd-br mirror-x"></div>
     <div class="breathing-border"></div>
     <div class="shimmer-line shimmer-top"></div>
@@ -945,18 +949,17 @@ button, a, .qs-dot { min-height: 28px; min-width: 28px; }
 
   <!-- ═══════ SCENE 5: COUNTDOWN ═══════ -->
   <section class="scene" id="s5">
-    <!-- Kiri atas: flora1 + kembang -->
-    <div class="scene-decor dec-flora1 pos-tl sz-lg sd-tl"></div>
-    <div class="scene-decor dec-kembang pos-tl2 sz-xs sd-tl"></div>
-    <!-- Kanan atas: daun mirror + palm -->
-    <div class="scene-decor dec-daun pos-tr sz-lg sd-tr mirror-x"></div>
-    <div class="scene-decor dec-palm pos-tr2 sz-sm sd-tr mirror-x"></div>
-    <!-- Kiri bawah: flora3 + daunbunga -->
+    <!-- TL: flora1 + bunga (sambungan BL scene 4) -->
+    <div class="scene-decor dec-flora1 pos-tl sz-xl sd-tl"></div>
+    <div class="scene-decor dec-bunga pos-tl2 sz-sm sd-tl"></div>
+    <!-- TR: flora2 mirror + kembang (sambungan BR scene 4) -->
+    <div class="scene-decor dec-flora2 pos-tr sz-lg sd-tr mirror-x"></div>
+    <div class="scene-decor dec-kembang pos-tr2 sz-xs sd-tr mirror-x"></div>
+    <!-- BL: flora3 + daunbunga -->
     <div class="scene-decor dec-flora3 pos-bl sz-lg sd-bl"></div>
     <div class="scene-decor dec-daunbunga pos-bl2 sz-sm sd-bl"></div>
-    <div class="scene-decor dec-bunga pos-bl3 sz-xs sd-bl"></div>
-    <!-- Kanan bawah: flora2 mirror + golden -->
-    <div class="scene-decor dec-flora2 pos-br sz-lg sd-br mirror-x"></div>
+    <!-- BR: daun mirror + golden -->
+    <div class="scene-decor dec-daun pos-br sz-lg sd-br mirror-x"></div>
     <div class="scene-decor dec-golden pos-br2 sz-xs sd-br mirror-x"></div>
     <div class="breathing-border"></div>
     <div class="shimmer-line shimmer-top"></div>
@@ -984,19 +987,18 @@ button, a, .qs-dot { min-height: 28px; min-width: 28px; }
 
   <!-- ═══════ SCENE 6: NASIHAT ═══════ -->
   <section class="scene" id="s6">
-    <!-- Kiri atas: flora2 + golden -->
-    <div class="scene-decor dec-flora2 pos-tl sz-lg sd-tl"></div>
-    <div class="scene-decor dec-golden pos-tl2 sz-xs sd-tl"></div>
-    <!-- Kanan atas: flora3 mirror + daunbunga -->
-    <div class="scene-decor dec-flora3 pos-tr sz-xl sd-tr mirror-x"></div>
-    <div class="scene-decor dec-daunbunga pos-tr2 sz-sm sd-tr mirror-x"></div>
-    <div class="scene-decor dec-palm pos-tr3 sz-xs sd-tr mirror-x"></div>
-    <!-- Kiri bawah: flora1 + bunga -->
-    <div class="scene-decor dec-flora1 pos-bl sz-lg sd-bl"></div>
-    <div class="scene-decor dec-bunga pos-bl2 sz-xs sd-bl"></div>
-    <!-- Kanan bawah: daun mirror + kembang -->
-    <div class="scene-decor dec-daun pos-br sz-md sd-br mirror-x"></div>
-    <div class="scene-decor dec-kembang pos-br2 sz-xs sd-br mirror-x"></div>
+    <!-- TL: flora3 + daunbunga (sambungan BL scene 5) -->
+    <div class="scene-decor dec-flora3 pos-tl sz-lg sd-tl"></div>
+    <div class="scene-decor dec-daunbunga pos-tl2 sz-sm sd-tl"></div>
+    <!-- TR: daun + golden (sambungan BR scene 5) -->
+    <div class="scene-decor dec-daun pos-tr sz-lg sd-tr mirror-x"></div>
+    <div class="scene-decor dec-golden pos-tr2 sz-xs sd-tr mirror-x"></div>
+    <!-- BL: flora1 + palm -->
+    <div class="scene-decor dec-flora1 pos-bl sz-xl sd-bl"></div>
+    <div class="scene-decor dec-palm pos-bl2 sz-sm sd-bl"></div>
+    <!-- BR: flora2 mirror + ginkgo -->
+    <div class="scene-decor dec-flora2 pos-br sz-lg sd-br mirror-x"></div>
+    <div class="scene-decor dec-ginkgo pos-br2 sz-sm sd-br mirror-x"></div>
     <div class="breathing-border"></div>
     <div class="shimmer-line shimmer-top"></div>
     <div class="shimmer-line shimmer-bot"></div>
@@ -1016,19 +1018,18 @@ button, a, .qs-dot { min-height: 28px; min-width: 28px; }
 
   <!-- ═══════ SCENE 7: BUKU TAMU ═══════ -->
   <section class="scene" id="s7">
-    <!-- Kiri atas: flora3 + palm -->
-    <div class="scene-decor dec-flora3 pos-tl sz-lg sd-tl"></div>
+    <!-- TL: flora1 + palm (sambungan BL scene 6) -->
+    <div class="scene-decor dec-flora1 pos-tl sz-xl sd-tl"></div>
     <div class="scene-decor dec-palm pos-tl2 sz-sm sd-tl"></div>
-    <!-- Kanan atas: flora1 mirror + kembang -->
-    <div class="scene-decor dec-flora1 pos-tr sz-lg sd-tr mirror-x"></div>
-    <div class="scene-decor dec-kembang pos-tr2 sz-xs sd-tr mirror-x"></div>
-    <!-- Kiri bawah: daun + ginkgo -->
-    <div class="scene-decor dec-daun pos-bl sz-md sd-bl"></div>
-    <div class="scene-decor dec-ginkgo pos-bl2 sz-sm sd-bl"></div>
-    <!-- Kanan bawah: flora2 mirror + golden + daunbunga -->
-    <div class="scene-decor dec-flora2 pos-br sz-lg sd-br mirror-x"></div>
-    <div class="scene-decor dec-golden pos-br2 sz-xs sd-br mirror-x"></div>
-    <div class="scene-decor dec-daunbunga pos-br3 sz-xs sd-br mirror-x"></div>
+    <!-- TR: flora2 mirror + ginkgo (sambungan BR scene 6) -->
+    <div class="scene-decor dec-flora2 pos-tr sz-lg sd-tr mirror-x"></div>
+    <div class="scene-decor dec-ginkgo pos-tr2 sz-sm sd-tr mirror-x"></div>
+    <!-- BL: flora3 + bunga -->
+    <div class="scene-decor dec-flora3 pos-bl sz-lg sd-bl"></div>
+    <div class="scene-decor dec-bunga pos-bl2 sz-sm sd-bl"></div>
+    <!-- BR: daun mirror + kembang -->
+    <div class="scene-decor dec-daun pos-br sz-lg sd-br mirror-x"></div>
+    <div class="scene-decor dec-kembang pos-br2 sz-xs sd-br mirror-x"></div>
     <div class="breathing-border"></div>
     <div class="shimmer-line shimmer-top"></div>
     <div class="shimmer-line shimmer-bot"></div>
@@ -1051,20 +1052,19 @@ button, a, .qs-dot { min-height: 28px; min-width: 28px; }
 
   <!-- ═══════ SCENE 8: CLOSING ═══════ -->
   <section class="scene" id="s8">
-    <!-- Kiri atas: flora1 + daunbunga + golden -->
-    <div class="scene-decor dec-flora1 pos-tl sz-xl sd-tl"></div>
-    <div class="scene-decor dec-daunbunga pos-tl2 sz-sm sd-tl"></div>
-    <div class="scene-decor dec-golden pos-tl3 sz-xs sd-tl"></div>
-    <!-- Kanan atas: flora2 mirror + palm -->
-    <div class="scene-decor dec-flora2 pos-tr sz-lg sd-tr mirror-x"></div>
-    <div class="scene-decor dec-palm pos-tr2 sz-sm sd-tr mirror-x"></div>
-    <!-- Kiri bawah: flora3 + bunga + kembang -->
-    <div class="scene-decor dec-flora3 pos-bl sz-xl sd-bl"></div>
-    <div class="scene-decor dec-bunga pos-bl2 sz-sm sd-bl"></div>
-    <div class="scene-decor dec-ginkgo pos-bl3 sz-xs sd-bl"></div>
-    <!-- Kanan bawah: flora1 mirror + daun -->
-    <div class="scene-decor dec-daun pos-br sz-lg sd-br mirror-x"></div>
-    <div class="scene-decor dec-kembang pos-br2 sz-xs sd-br mirror-x"></div>
+    <!-- TL: flora3 + bunga (sambungan BL scene 7) -->
+    <div class="scene-decor dec-flora3 pos-tl sz-lg sd-tl"></div>
+    <div class="scene-decor dec-bunga pos-tl2 sz-sm sd-tl"></div>
+    <!-- TR: daun + kembang (sambungan BR scene 7) -->
+    <div class="scene-decor dec-daun pos-tr sz-lg sd-tr mirror-x"></div>
+    <div class="scene-decor dec-kembang pos-tr2 sz-xs sd-tr mirror-x"></div>
+    <!-- BL: flora1 + golden + daunbunga -->
+    <div class="scene-decor dec-flora1 pos-bl sz-xl sd-bl"></div>
+    <div class="scene-decor dec-golden pos-bl2 sz-sm sd-bl"></div>
+    <div class="scene-decor dec-daunbunga pos-bl3 sz-xs sd-bl"></div>
+    <!-- BR: flora2 mirror + ginkgo -->
+    <div class="scene-decor dec-flora2 pos-br sz-lg sd-br mirror-x"></div>
+    <div class="scene-decor dec-ginkgo pos-br2 sz-sm sd-br mirror-x"></div>
     <div class="breathing-border"></div>
     <div class="shimmer-line shimmer-top"></div>
     <div class="shimmer-line shimmer-bot"></div>
@@ -1142,7 +1142,7 @@ const FALLING_IMAGES = [
 
 function initFlowers() {
   const container = document.getElementById('falling-container');
-  for(let i=0; i<30; i++) {
+  for(let i=0; i<18; i++) {
     let f = document.createElement('div');
     f.className = 'bunga-gugur';
     let randomImg = FALLING_IMAGES[Math.floor(Math.random() * FALLING_IMAGES.length)];
@@ -1167,7 +1167,7 @@ initFlowers();
 function initGoldParticles() {
   const scenes = document.querySelectorAll('.scene:not(#s0)');
   scenes.forEach(scene => {
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 8; i++) {
       const p = document.createElement('div');
       p.className = 'gold-particle';
       p.style.left = (10 + Math.random() * 80) + '%';
@@ -1183,7 +1183,7 @@ function initGoldParticles() {
       scene.appendChild(p);
     }
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 5; i++) {
       const d = document.createElement('div');
       d.className = 'gold-dust';
       d.style.left = (10 + Math.random() * 80) + '%';
@@ -1210,7 +1210,7 @@ function initGoldParticles() {
       "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cellipse cx='15' cy='12' rx='8' ry='10' fill='none' stroke='%23C5A866' stroke-width='0.6' opacity='0.14'/%3E%3Cpath d='M15,22 L15,28' stroke='%236DAB8A' stroke-width='0.5' opacity='0.1'/%3E%3Cpath d='M10,10 Q15,6 20,10' fill='none' stroke='%23C5A866' stroke-width='0.4' opacity='0.12'/%3E%3C/svg%3E",
       "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M8,25 Q4,15 15,5 Q26,15 22,25' fill='none' stroke='%236DAB8A' stroke-width='0.7' opacity='0.13'/%3E%3Cpath d='M12,20 Q15,12 18,20' fill='none' stroke='%23C5A866' stroke-width='0.4' opacity='0.1'/%3E%3C/svg%3E"
     ];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 4; i++) {
       const b = document.createElement('div');
       b.className = 'botanical-float';
       b.style.backgroundImage = `url("${botanicals[i % botanicals.length]}")`;
@@ -1233,7 +1233,7 @@ function initGoldParticles() {
       "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,2 Q18,8 16,14 Q20,12 22,18 Q16,16 14,18 Q17,22 12,24 Q7,22 10,18 Q8,16 2,18 Q4,12 8,14 Q6,8 12,2Z' fill='%236DAB8A' opacity='0.12'/%3E%3C/svg%3E",
       "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4,12 Q12,2 20,12 Q12,22 4,12Z' fill='none' stroke='%23C5A866' stroke-width='0.6' opacity='0.15'/%3E%3Cpath d='M12,4 L12,20 M6,12 L18,12' stroke='%23C5A866' stroke-width='0.3' opacity='0.1'/%3E%3C/svg%3E"
     ];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 2; i++) {
       const ls = document.createElement('div');
       ls.className = 'leaf-spin';
       ls.style.backgroundImage = `url("${leafSvgs[i % leafSvgs.length]}")`;
@@ -1260,7 +1260,7 @@ function initGoldParticles() {
       "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cellipse cx='10' cy='10' rx='4' ry='8' fill='%236DAB8A' opacity='0.08' transform='rotate(30 10 10)'/%3E%3C/svg%3E",
       "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M3,10 Q10,2 17,10 Q10,14 3,10Z' fill='%23C5A866' opacity='0.09'/%3E%3C/svg%3E"
     ];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 2; i++) {
       const pd = document.createElement('div');
       pd.className = 'petal-drift';
       pd.style.backgroundImage = `url("${petalSvgs[i % petalSvgs.length]}")`;
@@ -1365,18 +1365,18 @@ document.getElementById('film').style.overflowY = 'hidden';
 /* ════════════════════════════════════════════
    SCROLL-TRIGGERED ANIMATIONS (IntersectionObserver)
 ════════════════════════════════════════════ */
-const observerOptions = { root: document.getElementById('film'), threshold: 0.3 };
+const observerOptions = { root: document.getElementById('film'), threshold: 0.15 };
 const animObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
+    const animEls = entry.target.querySelectorAll('.anim-fade,.anim-up,.anim-down,.anim-scale,.anim-left,.anim-right');
+    const decorEls = entry.target.querySelectorAll('.scene-decor');
     if (entry.isIntersecting) {
-      // Animate content elements
-      entry.target.querySelectorAll('.anim-fade,.anim-up,.anim-down,.anim-scale,.anim-left,.anim-right').forEach(el => {
-        el.classList.add('visible');
-      });
-      // Animate scene decors
-      entry.target.querySelectorAll('.scene-decor').forEach(el => {
-        el.classList.add('visible');
-      });
+      animEls.forEach(el => el.classList.add('visible'));
+      decorEls.forEach(el => el.classList.add('visible'));
+    } else {
+      // Reset saat keluar viewport agar animasi replay saat kembali
+      animEls.forEach(el => el.classList.remove('visible'));
+      decorEls.forEach(el => el.classList.remove('visible'));
     }
   });
 }, observerOptions);
