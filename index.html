@@ -585,6 +585,14 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 .s0-open-btn:hover { background: #2A4E3A; transform: translateY(-2px); }
 .s0-open-btn i { font-size: 0.85rem; }
 
+.s0-open-hint {
+  font-family: 'Jost', sans-serif; font-size: clamp(0.45rem, 1.5vw, 0.55rem);
+  color: var(--text-muted); opacity: 0;
+  animation: fadeInUp 0.8s 1.5s forwards, hintPulse 3s 2.5s ease-in-out infinite;
+  margin-top: 6px; text-align: center; letter-spacing: 0.05em;
+}
+@keyframes hintPulse { 0%,100% { opacity: 0.7; } 50% { opacity: 1; } }
+
 .s0-disclaimer {
   font-family: 'Jost', sans-serif; font-size: clamp(0.4rem, 1.4vw, 0.5rem);
   font-style: italic; color: #4A6555; opacity: 0;
@@ -670,6 +678,8 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 .closing-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(0.85rem,2.8vw,1.05rem); color: var(--text-dark); line-height: 1.8; margin-bottom: 12px; text-align: center; }
 .btn-wa-big { display:inline-flex; align-items:center; gap:8px; padding: clamp(10px,2.8vw,12px) clamp(20px,6vw,28px); background: #25D366; border-radius: 30px; color:#fff; text-decoration:none; font-size: clamp(0.65rem,2.2vw,0.8rem); font-weight: 500; letter-spacing:0.1em; text-transform:uppercase; transition: all .3s; box-shadow: 0 5px 15px rgba(37,211,102,0.2);}
 .btn-wa-big:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(37,211,102,0.3);}
+.btn-close-page { display:inline-flex; align-items:center; gap:8px; padding: clamp(9px,2.5vw,11px) clamp(18px,5vw,24px); background: transparent; border: 1px solid rgba(154,128,64,0.3); border-radius: 30px; color: var(--text-muted); text-decoration:none; font-family:'Jost',sans-serif; font-size: clamp(0.6rem,2vw,0.72rem); font-weight: 400; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; transition: all .3s; margin-top: 10px; }
+.btn-close-page:hover { background: rgba(154,128,64,0.06); border-color: var(--gold-dark); }
 
 /* ════════════════════════════════════════════
    COUNTDOWN TIMER
@@ -690,26 +700,31 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 ════════════════════════════════════════════ */
 .scroll-hint {
   position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-  z-index: 55; display: flex; flex-direction: column; align-items: center; gap: 4px;
-  opacity: 0; animation: scrollHintFade 3s 2s ease-in-out forwards;
+  z-index: 55; display: none; flex-direction: column; align-items: center; gap: 3px;
+  opacity: 0;
   pointer-events: none;
 }
 .scroll-hint-text {
-  font-family: 'Jost', sans-serif; font-size: 0.6rem; color: var(--text-muted);
-  letter-spacing: 0.15em; text-transform: uppercase; background: rgba(255,255,255,0.9);
-  padding: 4px 12px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  font-family: 'Jost', sans-serif; font-size: clamp(0.48rem,1.6vw,0.58rem); color: var(--text-muted);
+  letter-spacing: 0.1em; background: rgba(255,255,255,0.9);
+  padding: 5px 14px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  text-align: center; line-height: 1.4; max-width: 220px;
 }
 .scroll-hint-arrow {
-  width: 20px; height: 20px; border: none; background: none;
-  animation: scrollBounce 1.5s ease-in-out infinite;
+  width: 16px; height: 12px; border: none; background: none;
 }
 .scroll-hint-arrow::before {
-  content: ''; display: block; width: 10px; height: 10px;
-  border-right: 2px solid var(--gold-dark); border-bottom: 2px solid var(--gold-dark);
-  transform: rotate(45deg); margin: 0 auto;
+  content: ''; display: block; width: 8px; height: 8px;
+  border-right: 1.5px solid var(--gold-dark); border-bottom: 1.5px solid var(--gold-dark);
+  margin: 0 auto;
 }
+.scroll-hint-arrow-up::before { transform: rotate(-135deg); }
+.scroll-hint-arrow-up { animation: scrollBounceUp 1.5s ease-in-out infinite; }
+.scroll-hint-arrow-down::before { transform: rotate(45deg); }
+.scroll-hint-arrow-down { animation: scrollBounceDown 1.5s ease-in-out infinite; }
 @keyframes scrollHintFade { 0% { opacity: 0; } 100% { opacity: 1; } }
-@keyframes scrollBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+@keyframes scrollBounceUp { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes scrollBounceDown { 0%,100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
 .scroll-hint.hidden { opacity: 0; transition: opacity 0.5s; }
 
 /* ════════════════════════════════════════════
@@ -821,7 +836,7 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 
 /* Touch targets - min 44px for accessibility */
 button, a, .qs-dot { min-height: 28px; min-width: 28px; }
-.s0-open-btn, .btn-map-mini, .wf-btn, .cal-btn, .btn-wa-big { min-height: 44px; }
+.s0-open-btn, .btn-map-mini, .wf-btn, .cal-btn, .btn-wa-big, .btn-close-page { min-height: 44px; }
 .s2-pname, .s2-ppar, .ev-text { overflow-wrap: break-word; word-wrap: break-word; }
 
 /* Smooth focus styles for form */
@@ -866,12 +881,13 @@ button, a, .qs-dot { min-height: 28px; min-width: 28px; }
       <p class="s0-the-wedding">The Wedding Of</p>
       <div class="s0-names">Amir <span>&</span> Dina</div>
       <div class="s0-guest-wrap">
-        <p class="s0-guest-label">Kepada Yth. Bapak/Ibu/Saudara(i)</p>
+        <p class="s0-guest-label">Kepada Yang Terhormat Bapak/Ibu/Saudara(i)</p>
         <div class="s0-guest-name" id="guestNameDisplay">Tamu Undangan</div>
       </div>
       <button class="s0-open-btn" onclick="openInvitation(event)">
         <i class="fas fa-envelope-open-text"></i> Buka Undangan
       </button>
+      <p class="s0-open-hint">Tekan tombol di atas untuk membuka undangan</p>
       <p class="s0-disclaimer">*Mohon maaf apabila ada kesalahan penulisan nama dan gelar</p>
     </div>
   </section>
@@ -934,13 +950,13 @@ button, a, .qs-dot { min-height: 28px; min-width: 28px; }
         <div class="s2-family-card anim-left d3">
           <div class="s2-photo"><i class="fas fa-user-tie"></i></div>
           <p class="s2-pname">Muhammad Amir Nugraha</p>
-          <p class="s2-ppar">Putra dari<br>Bpk. Gito Wiyono<br>&amp; Ibu Nani Sugiarti</p>
+          <p class="s2-ppar">Putra dari<br>Bapak Gito Wiyono<br>&amp; Ibu Nani Sugiarti</p>
         </div>
         <div class="s2-and-char anim-scale d4">&amp;</div>
         <div class="s2-family-card anim-right d3">
           <div class="s2-photo"><i class="fas fa-female"></i></div>
           <p class="s2-pname">Dina Arifah</p>
-          <p class="s2-ppar">Putri dari<br>Bpk. H. M. Mawardi<br>&amp; Ibu Hj. Roswita</p>
+          <p class="s2-ppar">Putri dari<br>Bapak H. M. Mawardi<br>&amp; Ibu Hj. Roswita</p>
         </div>
       </div>
     </div>
@@ -1153,9 +1169,10 @@ button, a, .qs-dot { min-height: 28px; min-width: 28px; }
       <p class="anim-fade d3" style="font-family:'Cormorant Garamond',serif;font-size:clamp(0.78rem,2.5vw,0.92rem);color:var(--text-dark);margin-bottom:6px;">Beserta Keluarga Besar</p>
       <p class="anim-fade d3" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(0.85rem,2.8vw,1rem);color:var(--text-dark);margin-bottom:15px;">Sakinah, Mawaddah wa Rahmah, Ila al Jannah</p>
 
-      <a href="https://wa.me/6285346560575?text=Assalamu'alaikum%2C%20saya%20ingin%20mengkonfirmasi%20kehadiran%20untuk%20pernikahan%20Amir%20%26%20Dina." target="_blank" rel="noopener" class="btn-wa-big anim-up d4">
+      <a href="https://wa.me/6285710035069?text=Assalamu'alaikum%2C%20saya%20ingin%20mengkonfirmasi%20kehadiran%20untuk%20pernikahan%20Amir%20%26%20Dina." target="_blank" rel="noopener" class="btn-wa-big anim-up d4">
         <i class="fab fa-whatsapp" style="font-size:1.2rem;"></i> Konfirmasi Kehadiran
       </a>
+      <button class="btn-close-page anim-up d5" onclick="closePage()"><i class="fas fa-times-circle"></i> Tutup Undangan</button>
       <p class="anim-fade d5" style="font-size: clamp(0.5rem,1.5vw,0.6rem); color: #666; letter-spacing:0.1em; margin-top: 20px; text-transform:uppercase;">&copy; 2026 &middot; Amir &amp; Dina</p>
     </div>
   </section>
@@ -1177,8 +1194,9 @@ button, a, .qs-dot { min-height: 28px; min-width: 28px; }
 
 <!-- Scroll hint -->
 <div class="scroll-hint" id="scrollHint">
-  <div class="scroll-hint-arrow"></div>
-  <span class="scroll-hint-text">Scroll ke bawah</span>
+  <div class="scroll-hint-arrow scroll-hint-arrow-up"></div>
+  <span class="scroll-hint-text">Geser ke atas atau ke bawah untuk berpindah halaman</span>
+  <div class="scroll-hint-arrow scroll-hint-arrow-down"></div>
 </div>
 
 <script>
@@ -1433,7 +1451,9 @@ function openInvitation(e) {
   setTimeout(() => {
     s0.classList.add('hide');
     document.getElementById('film').style.overflowY = 'auto';
-    document.getElementById('scrollHint').style.display = 'flex';
+    const hint = document.getElementById('scrollHint');
+    hint.style.display = 'flex';
+    hint.style.animation = 'scrollHintFade 2s 1s ease-in-out forwards';
     // Page indicator will show on first scroll
     if(!playing) toggleAudio();
   }, 600);
@@ -1500,11 +1520,8 @@ sceneIds.forEach(id => {
   if (el) pageObserver.observe(el);
 });
 
-// Scroll event: hide hint + show page indicator
+// Scroll event: show page indicator
 film.addEventListener('scroll', function onFirstScroll() {
-  const hint = document.getElementById('scrollHint');
-  if (hint) hint.classList.add('hidden');
-  setTimeout(() => { if (hint) hint.style.display = 'none'; }, 600);
   pageIndicator.classList.add('show');
   film.removeEventListener('scroll', onFirstScroll);
 }, { passive: true });
@@ -1645,6 +1662,16 @@ function toggleAudio() {
   if (playing) { bgm.pause(); audioBtn.innerHTML = '<i class="fas fa-music"></i>'; audioBtn.classList.remove('playing'); }
   else { bgm.play().catch(()=>{}); audioBtn.innerHTML = '<i class="fas fa-compact-disc"></i>'; audioBtn.classList.add('playing'); }
   playing = !playing;
+}
+
+/* ════════════════════════════════════════════
+   TUTUP HALAMAN
+════════════════════════════════════════════ */
+function closePage() {
+  if (playing) toggleAudio();
+  window.close();
+  // Fallback: jika window.close() diblokir browser, arahkan ke halaman kosong
+  setTimeout(() => { window.location.href = 'about:blank'; }, 300);
 }
 </script>
 </body>
