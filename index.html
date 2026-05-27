@@ -2,13 +2,25 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
 <meta name="theme-color" content="#D6E5E2">
+<meta name="description" content="Undangan Pernikahan Muhammad Amir Nugraha & Dina Arifah">
 <title>Undangan Pernikahan — Amir & Dina</title>
+<!-- DNS prefetch & preconnect for faster external resource loading -->
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="https://script.google.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&family=Alex+Brush&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<!-- Preload critical fonts for faster first paint -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&family=Alex+Brush&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&family=Alex+Brush&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Preload critical images used in opening screen -->
+<link rel="preload" href="assets/images/corner-left1.png" as="image">
+<link rel="preload" href="assets/images/flow2.png" as="image">
 
 <style>
 /* ════════════════════════════════════════════
@@ -17,11 +29,11 @@
 :root {
   --bg-main: #FDFDFD;
   --bg-alt: rgba(214, 229, 226, 0.5);
-  --text-dark: #1A3626;
-  --text-muted: #4A5C51;
+  --text-dark: #122B1E;
+  --text-muted: #334A3D;
   --gold-light: #D9C88A;
-  --gold-dark: #9A8040;
-  --green-sage: #6DAB8A;
+  --gold-dark: #7A6520;
+  --green-sage: #4D8C6A;
   --scene-bg: radial-gradient(circle at 60% 40%, #FFFFFF 0%, #DCE8E5 50%, #D6E5E2 100%);
 }
 
@@ -63,8 +75,9 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
   background: var(--scene-bg);
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  will-change: transform;
-  transform: translateZ(0);
+  contain: layout style paint;
+  content-visibility: auto;
+  contain-intrinsic-size: 100vw 100dvh;
 }
 
 /* Reduce animations for users who prefer reduced motion */
@@ -82,7 +95,7 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpolygon points='60,5 68,25 90,10 78,32 100,32 80,45 95,65 72,55 72,78 60,58 48,78 48,55 25,65 40,45 20,32 42,32 30,10 52,25' fill='none' stroke='%239A8040' stroke-width='0.6' opacity='0.12'/%3E%3Ccircle cx='60' cy='42' r='14' fill='none' stroke='%23C5A866' stroke-width='0.5' opacity='0.08'/%3E%3Cpath d='M0,60 Q30,40 60,60 Q90,80 120,60' fill='none' stroke='%23C5A866' stroke-width='0.4' opacity='0.07'/%3E%3Cpath d='M0,0 L120,120 M120,0 L0,120' fill='none' stroke='%239A8040' stroke-width='0.3' opacity='0.05'/%3E%3C/svg%3E");
   background-size: 120px 120px;
   z-index: 0; pointer-events: none;
-  animation: mosaicShimmer 20s linear infinite;
+  opacity: 0.9;
 }
 .scene::after {
   content: '';
@@ -90,7 +103,6 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
   background: radial-gradient(ellipse at 50% 45%, rgba(255,255,255,0.6) 0%, transparent 55%);
   z-index: 0; pointer-events: none;
 }
-@keyframes mosaicShimmer { 0% { opacity: 0.8; } 50% { opacity: 1; } 100% { opacity: 0.8; } }
 
 /* ════════════════════════════════════════════
    LAYER 1: BUNGA GUGUR (GLOBAL - fixed overlay)
@@ -112,7 +124,6 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
   position: absolute; pointer-events: none;
   background-size: contain; background-repeat: no-repeat;
   z-index: 1; opacity: 0;
-  will-change: transform, opacity;
 }
 
 .scene-decor.visible { animation: enterTL 1.6s cubic-bezier(.16,1,.3,1) forwards; }
@@ -122,24 +133,24 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 .sd-br.visible { animation: enterBR 1.6s cubic-bezier(.16,1,.3,1) 0.2s forwards, windSway4 9s ease-in-out 1.8s infinite alternate; }
 
 @keyframes enterTL {
-  0%   { opacity:0; transform: translate(-50px,-40px) scale(0.6) rotate(-15deg); filter: blur(4px); }
-  40%  { opacity:0.7; filter: blur(1px); }
-  100% { opacity:1; transform: translate(0,0) scale(1) rotate(0deg); filter: blur(0); }
+  0%   { opacity:0; transform: translate(-40px,-30px) scale(0.7) rotate(-10deg); }
+  40%  { opacity:0.7; }
+  100% { opacity:1; transform: translate(0,0) scale(1) rotate(0deg); }
 }
 @keyframes enterTR {
-  0%   { opacity:0; transform: translate(50px,-40px) scale(0.6) rotate(15deg); filter: blur(4px); }
-  40%  { opacity:0.7; filter: blur(1px); }
-  100% { opacity:1; transform: translate(0,0) scale(1) rotate(0deg); filter: blur(0); }
+  0%   { opacity:0; transform: translate(40px,-30px) scale(0.7) rotate(10deg); }
+  40%  { opacity:0.7; }
+  100% { opacity:1; transform: translate(0,0) scale(1) rotate(0deg); }
 }
 @keyframes enterBL {
-  0%   { opacity:0; transform: translate(-50px,40px) scale(0.6) rotate(12deg); filter: blur(4px); }
-  40%  { opacity:0.7; filter: blur(1px); }
-  100% { opacity:1; transform: translate(0,0) scale(1) rotate(0deg); filter: blur(0); }
+  0%   { opacity:0; transform: translate(-40px,30px) scale(0.7) rotate(8deg); }
+  40%  { opacity:0.7; }
+  100% { opacity:1; transform: translate(0,0) scale(1) rotate(0deg); }
 }
 @keyframes enterBR {
-  0%   { opacity:0; transform: translate(50px,40px) scale(0.6) rotate(-12deg); filter: blur(4px); }
-  40%  { opacity:0.7; filter: blur(1px); }
-  100% { opacity:1; transform: translate(0,0) scale(1) rotate(0deg); filter: blur(0); }
+  0%   { opacity:0; transform: translate(40px,30px) scale(0.7) rotate(-8deg); }
+  40%  { opacity:0.7; }
+  100% { opacity:1; transform: translate(0,0) scale(1) rotate(0deg); }
 }
 
 @keyframes windSway1 {
@@ -361,11 +372,10 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
    LAYER 3: KONTEN KARTU
 ════════════════════════════════════════════ */
 .content-card {
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.82);
   border: 1px solid rgba(154,128,64,0.18); border-radius: 18px;
   padding: clamp(22px,6vw,35px) clamp(18px,5vw,28px); width: 90%; max-width: 380px;
-  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.04), 0 0 0 1px rgba(255,255,255,0.3) inset;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.04), 0 0 0 1px rgba(255,255,255,0.3) inset;
   display: flex; flex-direction: column; align-items: center; text-align: center;
   position: relative; z-index: 2;
 }
@@ -490,24 +500,24 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 }
 
 @keyframes cinematicRevealTL {
-  0%   { opacity: 0; transform: translate(-40px, -30px) scale(0.7) rotate(-8deg); filter: blur(6px) drop-shadow(3px 6px 10px rgba(26,54,38,0.2)); }
-  30%  { opacity: 0.6; filter: blur(2px) drop-shadow(3px 6px 10px rgba(26,54,38,0.2)); }
-  100% { opacity: 1; transform: translate(0,0) scale(1) rotate(0deg); filter: blur(0) drop-shadow(3px 6px 10px rgba(26,54,38,0.2)); }
+  0%   { opacity: 0; transform: translate(-35px, -25px) scale(0.75) rotate(-6deg); }
+  30%  { opacity: 0.6; }
+  100% { opacity: 1; transform: translate(0,0) scale(1) rotate(0deg); }
 }
 @keyframes cinematicRevealBL {
-  0%   { opacity: 0; transform: translate(-40px, 30px) scale(0.7) rotate(8deg); filter: blur(6px) drop-shadow(3px -4px 10px rgba(26,54,38,0.2)); }
-  30%  { opacity: 0.6; filter: blur(2px) drop-shadow(3px -4px 10px rgba(26,54,38,0.2)); }
-  100% { opacity: 1; transform: translate(0,0) scale(1) rotate(0deg); filter: blur(0) drop-shadow(3px -4px 10px rgba(26,54,38,0.2)); }
+  0%   { opacity: 0; transform: translate(-35px, 25px) scale(0.75) rotate(6deg); }
+  30%  { opacity: 0.6; }
+  100% { opacity: 1; transform: translate(0,0) scale(1) rotate(0deg); }
 }
 @keyframes cinematicRevealTR {
-  0%   { opacity: 0; transform: scaleX(-1) translate(-40px, -30px) scale(0.7) rotate(8deg); filter: blur(6px); }
-  30%  { opacity: 0.6; filter: blur(2px); }
-  100% { opacity: 1; transform: scaleX(-1) translate(0,0) scale(1) rotate(0deg); filter: blur(0); }
+  0%   { opacity: 0; transform: scaleX(-1) translate(-35px, -25px) scale(0.75) rotate(6deg); }
+  30%  { opacity: 0.6; }
+  100% { opacity: 1; transform: scaleX(-1) translate(0,0) scale(1) rotate(0deg); }
 }
 @keyframes cinematicRevealBR {
-  0%   { opacity: 0; transform: scaleX(-1) translate(-40px, 30px) scale(0.7) rotate(-8deg); filter: blur(6px); }
-  30%  { opacity: 0.6; filter: blur(2px); }
-  100% { opacity: 1; transform: scaleX(-1) translate(0,0) scale(1) rotate(0deg); filter: blur(0); }
+  0%   { opacity: 0; transform: scaleX(-1) translate(-35px, 25px) scale(0.75) rotate(-6deg); }
+  30%  { opacity: 0.6; }
+  100% { opacity: 1; transform: scaleX(-1) translate(0,0) scale(1) rotate(0deg); }
 }
 @keyframes windSwayPlant {
   0%   { transform: rotate(0deg) scale(1); }
@@ -536,29 +546,29 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 }
 .s0-the-wedding {
   font-family: 'Jost', sans-serif;
-  font-size: clamp(0.6rem, 2vw, 0.7rem); color: #6DAB8A;
+  font-size: clamp(0.6rem, 2vw, 0.7rem); color: #3D7A5A;
   opacity: 0; animation: fadeInUp 1.2s 0.8s forwards;
   margin-bottom: 4px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
 }
 .s0-names {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2.4rem, 9vw, 3.4rem); font-weight: 600;
-  color: #1A3626; text-align: center; line-height: 1;
+  color: #122B1E; text-align: center; line-height: 1;
   opacity: 0; animation: fadeInUp 1.2s 1s forwards;
 }
-.s0-names span { display: block; font-family: 'Alex Brush', cursive; color: #7A6830; font-size: 0.7em; margin: -2px 0; }
+.s0-names span { display: block; font-family: 'Alex Brush', cursive; color: #5C4E1E; font-size: 0.7em; margin: -2px 0; }
 
 .s0-guest-wrap {
   margin: 14px 0 5px 0; padding: clamp(12px,3.5vw,18px) clamp(16px,5vw,24px);
   background: rgba(255,255,255,0.92); border: 1px solid rgba(109,171,138,0.3); border-radius: 10px;
   opacity: 0; animation: fadeInUp 1s 1.2s forwards;
   text-align: center; width: 85%; max-width: 320px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05); backdrop-filter: blur(5px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
-.s0-guest-label { font-size: clamp(0.55rem,1.8vw,0.65rem); color: #6DAB8A; margin-bottom: 4px; font-family: 'Jost', sans-serif; letter-spacing: 0.15em; text-transform: uppercase;}
+.s0-guest-label { font-size: clamp(0.55rem,1.8vw,0.65rem); color: #3D7A5A; margin-bottom: 4px; font-family: 'Jost', sans-serif; letter-spacing: 0.15em; text-transform: uppercase;}
 .s0-guest-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(0.9rem, 3.2vw, 1.2rem); font-weight: 700; color: #1A3626;
+  font-size: clamp(0.9rem, 3.2vw, 1.2rem); font-weight: 700; color: #122B1E;
   line-height: 1.3; overflow-wrap: break-word; word-wrap: break-word; hyphens: auto;
   min-height: 1.3em;
 }
@@ -577,7 +587,7 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 
 .s0-disclaimer {
   font-family: 'Jost', sans-serif; font-size: clamp(0.4rem, 1.4vw, 0.5rem);
-  font-style: italic; color: #7A8E82; opacity: 0;
+  font-style: italic; color: #4A6555; opacity: 0;
   animation: fadeInUp 0.8s 1.6s forwards;
   margin-top: 6px; text-align: center; max-width: 240px; line-height: 1.4;
 }
@@ -649,7 +659,7 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 .wi { padding: clamp(7px,2vw,10px); background: rgba(249,249,249,0.8); border-radius: 8px; margin-bottom: 6px; border-left: 3px solid var(--green-sage); }
 .wi-name { font-size: clamp(0.7rem,2.2vw,0.8rem); color: var(--text-dark); font-weight:600; margin-bottom:2px; }
 .wi-msg { font-size: clamp(0.7rem,2.2vw,0.82rem); color: var(--text-muted); line-height:1.5; }
-.wi-time { font-size: clamp(0.5rem,1.5vw,0.6rem); color: #aaa; margin-top: 3px; }
+.wi-time { font-size: clamp(0.5rem,1.5vw,0.6rem); color: #777; margin-top: 3px; }
 .wish-loading, .wish-error { text-align: center; padding: 15px; font-size: 0.75rem; color: var(--text-muted); }
 .wish-error { color: #c0392b; }
 .wf-btn:disabled { opacity: 0.6; cursor: not-allowed; }
@@ -657,7 +667,7 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 /* ════════════════════════════════════════════
    SCENE 8 — CLOSING
 ════════════════════════════════════════════ */
-.closing-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(0.82rem,2.8vw,1rem); color: var(--text-muted); line-height: 1.8; margin-bottom: 12px; text-align: center; }
+.closing-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(0.85rem,2.8vw,1.05rem); color: var(--text-dark); line-height: 1.8; margin-bottom: 12px; text-align: center; }
 .btn-wa-big { display:inline-flex; align-items:center; gap:8px; padding: clamp(10px,2.8vw,12px) clamp(20px,6vw,28px); background: #25D366; border-radius: 30px; color:#fff; text-decoration:none; font-size: clamp(0.65rem,2.2vw,0.8rem); font-weight: 500; letter-spacing:0.1em; text-transform:uppercase; transition: all .3s; box-shadow: 0 5px 15px rgba(37,211,102,0.2);}
 .btn-wa-big:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(37,211,102,0.3);}
 
@@ -730,30 +740,92 @@ input, textarea { -webkit-user-select: auto; user-select: auto; color: var(--tex
 @keyframes spin { 100% { transform:rotate(360deg); } }
 
 /* ════════════════════════════════════════════
+   PAGE INDICATOR DOTS
+════════════════════════════════════════════ */
+.page-indicator {
+  position: fixed; right: 6px; top: 50%; transform: translateY(-50%);
+  z-index: 55; display: flex; flex-direction: column; gap: 5px;
+  opacity: 0; transition: opacity 0.4s;
+  pointer-events: none;
+}
+.page-indicator.show { opacity: 1; pointer-events: auto; }
+.page-dot {
+  width: 3px; height: 3px; border-radius: 50%;
+  background: rgba(154,128,64,0.25); border: none; padding: 0;
+  cursor: pointer; transition: all 0.3s;
+}
+.page-dot.active {
+  background: var(--gold-dark);
+  transform: scale(1.4);
+  box-shadow: none;
+}
+
+/* ════════════════════════════════════════════
    RESPONSIVE
 ════════════════════════════════════════════ */
+/* Safe area (notch, dynamic island) */
 @supports (padding: env(safe-area-inset-top)) {
   #film { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
+  #audio-btn { top: calc(15px + env(safe-area-inset-top)); right: calc(15px + env(safe-area-inset-right)); }
+  .page-indicator { right: calc(6px + env(safe-area-inset-right)); }
+}
+
+/* Very small phones (iPhone SE, Galaxy A) */
+@media (max-width: 360px) {
+  .content-card { padding: 16px 12px; width: 94%; }
+  .s0-guest-wrap { width: 92%; }
+  .sec-title { font-size: clamp(1.5rem,6vw,2.2rem); }
+  .s0-names { font-size: clamp(2rem,8vw,2.8rem); }
+  .scene-decor.sz-xl { width: clamp(100px,30vw,180px); height: clamp(140px,40vw,240px); }
+  .scene-decor.sz-lg { width: clamp(80px,24vw,140px); height: clamp(100px,30vw,170px); }
+}
+
+/* Short phones / landscape */
+@media (max-height: 600px) {
+  .content-card { padding: 14px 14px; }
+  .sec-title { font-size: clamp(1.3rem,4.5vw,1.8rem); }
+  .s0-salam-sub { font-size: clamp(1.1rem,4vw,1.5rem); }
+  .scene-decor { opacity: 0.6; }
+  .countdown-wrap { gap: 6px; }
+  .cd-box { padding: 6px 4px; min-width: clamp(42px,12vw,56px); }
 }
 
 @media (max-height: 500px) and (orientation: landscape) {
-  .content-card { padding: 15px 15px; }
-  .sec-title { font-size: clamp(1.4rem,5vw,2rem); }
+  .content-card { padding: 12px 12px; }
+  .sec-title { font-size: clamp(1.2rem,4vw,1.6rem); }
   .scene-decor { display: none; }
+  .breathing-border, .glow-ring, .shimmer-line { display: none; }
+  .s0-gold-arch { display: none; }
+  .s0-living-plant, .s0-plant-tl2, .s0-plant-tl3, .s0-plant-bl, .s0-plant-bl2,
+  .s0-plant-tr, .s0-plant-tr2, .s0-plant-br, .s0-plant-br2 { display: none; }
 }
 
-@media (max-width: 360px) {
-  .content-card { padding: 18px 14px; width: 92%; }
-  .s0-guest-wrap { width: 90%; }
+/* Medium phones (standard) */
+@media (min-width: 361px) and (max-width: 413px) {
+  .content-card { width: 91%; }
 }
 
+/* Tablets & large screens */
 @media (min-width: 768px) {
-  .content-card { max-width: 400px; padding: 30px 28px; }
-  .wish-list { max-height: 180px; }
+  .content-card { max-width: 420px; padding: 32px 30px; }
+  .wish-list { max-height: 200px; }
+  .page-indicator { right: 10px; gap: 6px; }
+  .page-dot { width: 4px; height: 4px; }
 }
 
+/* Very tall phones (Galaxy Fold inner, etc.) */
+@media (min-height: 900px) and (max-width: 500px) {
+  .content-card { padding: 28px 22px; }
+  .s2-family-row { gap: clamp(10px,4vw,18px); }
+}
+
+/* Touch targets - min 44px for accessibility */
 button, a, .qs-dot { min-height: 28px; min-width: 28px; }
+.s0-open-btn, .btn-map-mini, .wf-btn, .cal-btn, .btn-wa-big { min-height: 44px; }
 .s2-pname, .s2-ppar, .ev-text { overflow-wrap: break-word; word-wrap: break-word; }
+
+/* Smooth focus styles for form */
+.wf-input:focus-visible { outline: 2px solid var(--green-sage); outline-offset: 1px; }
 </style>
 </head>
 <body>
@@ -828,7 +900,7 @@ button, a, .qs-dot { min-height: 28px; min-width: 28px; }
 
     <div class="content-card">
       <div class="anim-scale d0" style="margin-bottom: 5px;"><i class="fas fa-leaf" style="color:var(--gold-dark); font-size: 1.3rem;"></i></div>
-      <p class="s1-bismillah anim-fade d1">Bismillahirrahmanirrahim</p>
+      <p class="s1-bismillah anim-fade d1">Bismillâhirrahmânirrahîm</p>
       <div class="sec-orn anim-scale d2"><div class="sec-orn-dot"></div></div>
       <p class="s1-ayat anim-up d3">"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya..."</p>
       <span class="s1-ref anim-fade d4">QS. Ar-Rum: 21</span>
@@ -1073,22 +1145,35 @@ button, a, .qs-dot { min-height: 28px; min-width: 28px; }
     <div class="vine-corner vine-br"></div>
     <div class="light-streak" style="top:40%;left:-50%;animation-delay:1.5s;"></div>
 
-    <div class="content-card" style="background: rgba(255,255,255,0.5); border: none; box-shadow: none;">
+    <div class="content-card" style="background: rgba(255,255,255,0.7); border: none; box-shadow: none;">
       <p class="closing-text anim-up d1">Suatu kebahagiaan &amp; kehormatan bagi kami, apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan do'a restu kepada kami di pernikahan ini.</p>
       <div class="sec-orn anim-scale d2"><div class="sec-orn-dot"></div></div>
-      <p class="anim-fade d2" style="font-family:'Cormorant Garamond',serif;font-size:clamp(0.85rem,2.8vw,1rem);color:var(--text-muted);margin-bottom:12px;">Kami yang berbahagia,</p>
-      <div class="sec-title anim-up d3" style="font-size: clamp(2.2rem,9vw,3.2rem); margin-bottom: 4px;">Amir <span style="font-family:'Alex Brush',cursive; color:var(--green-sage); margin: 0 5px;">&amp;</span> Dina</div>
-      <p class="anim-fade d3" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(0.8rem,2.5vw,0.95rem);color:var(--text-muted); margin-bottom: 15px;">Sakinah &middot; Mawaddah &middot; Warahmah</p>
+      <p class="anim-fade d2" style="font-family:'Cormorant Garamond',serif;font-size:clamp(0.9rem,3vw,1.05rem);color:var(--text-dark);margin-bottom:10px;">Kami yang berbahagia,</p>
+      <div class="sec-title anim-up d3" style="font-size: clamp(2.2rem,9vw,3.2rem); margin-bottom: 2px;">Amir <span style="font-family:'Alex Brush',cursive; color:var(--green-sage); margin: 0 5px;">&amp;</span> Dina</div>
+      <p class="anim-fade d3" style="font-family:'Cormorant Garamond',serif;font-size:clamp(0.78rem,2.5vw,0.92rem);color:var(--text-dark);margin-bottom:6px;">Beserta Keluarga Besar</p>
+      <p class="anim-fade d3" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(0.85rem,2.8vw,1rem);color:var(--text-dark);margin-bottom:15px;">Sakinah, Mawaddah wa Rahmah, Ila al Jannah</p>
 
       <a href="https://wa.me/6285346560575?text=Assalamu'alaikum%2C%20saya%20ingin%20mengkonfirmasi%20kehadiran%20untuk%20pernikahan%20Amir%20%26%20Dina." target="_blank" rel="noopener" class="btn-wa-big anim-up d4">
         <i class="fab fa-whatsapp" style="font-size:1.2rem;"></i> Konfirmasi Kehadiran
       </a>
-      <p class="anim-fade d5" style="font-size: clamp(0.5rem,1.5vw,0.6rem); color: #999; letter-spacing:0.1em; margin-top: 20px; text-transform:uppercase;">&copy; 2026 &middot; Amir &amp; Dina</p>
+      <p class="anim-fade d5" style="font-size: clamp(0.5rem,1.5vw,0.6rem); color: #666; letter-spacing:0.1em; margin-top: 20px; text-transform:uppercase;">&copy; 2026 &middot; Amir &amp; Dina</p>
     </div>
   </section>
 
 </div>
 </div>
+
+<!-- Page indicator dots -->
+<nav class="page-indicator" id="pageIndicator" aria-label="Navigasi halaman">
+  <button class="page-dot active" data-scene="s1" aria-label="Bismillah"></button>
+  <button class="page-dot" data-scene="s2" aria-label="Mempelai"></button>
+  <button class="page-dot" data-scene="s3" aria-label="Akad Nikah"></button>
+  <button class="page-dot" data-scene="s4" aria-label="Walimatul Ursy"></button>
+  <button class="page-dot" data-scene="s5" aria-label="Hitung Mundur"></button>
+  <button class="page-dot" data-scene="s6" aria-label="Nasihat"></button>
+  <button class="page-dot" data-scene="s7" aria-label="Buku Tamu"></button>
+  <button class="page-dot" data-scene="s8" aria-label="Penutup"></button>
+</nav>
 
 <!-- Scroll hint -->
 <div class="scroll-hint" id="scrollHint">
@@ -1162,127 +1247,121 @@ function initFlowers() {
 initFlowers();
 
 /* ════════════════════════════════════════════
-   GOLD FLOATING PARTICLES (Motion Graphic)
+   GOLD FLOATING PARTICLES (Lazy-loaded per scene)
 ════════════════════════════════════════════ */
-function initGoldParticles() {
-  const scenes = document.querySelectorAll('.scene:not(#s0)');
-  scenes.forEach(scene => {
-    for (let i = 0; i < 8; i++) {
-      const p = document.createElement('div');
-      p.className = 'gold-particle';
-      p.style.left = (10 + Math.random() * 80) + '%';
-      p.style.top = (15 + Math.random() * 70) + '%';
-      p.style.setProperty('--fp-dur', (5 + Math.random() * 10) + 's');
-      p.style.setProperty('--fp-del', (Math.random() * 6) + 's');
-      p.style.setProperty('--fp-y', (-40 - Math.random() * 80) + 'px');
-      p.style.setProperty('--fp-x', (Math.random() * 40 - 20) + 'px');
-      p.style.setProperty('--fp-y2', (-80 - Math.random() * 100) + 'px');
-      p.style.setProperty('--fp-x2', (Math.random() * 30 - 15) + 'px');
-      p.style.width = (2 + Math.random() * 4) + 'px';
-      p.style.height = p.style.width;
-      scene.appendChild(p);
-    }
+const botanicalSvgs = [
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M15,2 Q8,8 10,15 Q5,12 3,18 Q8,16 12,18 Q9,22 15,28 Q21,22 18,18 Q22,16 27,18 Q25,12 20,15 Q22,8 15,2Z' fill='%236DAB8A' opacity='0.15'/%3E%3C/svg%3E",
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M5,25 Q15,5 25,25' fill='none' stroke='%23C5A866' stroke-width='0.8' opacity='0.2'/%3E%3Cpath d='M10,22 Q15,10 20,22' fill='none' stroke='%23C5A866' stroke-width='0.5' opacity='0.15'/%3E%3C/svg%3E",
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,2 C8,6 6,10 8,14 C4,12 2,16 6,18 C4,20 8,22 12,20 C16,22 20,20 18,18 C22,16 20,12 16,14 C18,10 16,6 12,2Z' fill='none' stroke='%236DAB8A' stroke-width='0.6' opacity='0.12'/%3E%3C/svg%3E",
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M5,15 Q10,5 15,10 Q20,5 25,15 Q20,20 15,18 Q10,20 5,15Z' fill='%236DAB8A' opacity='0.1'/%3E%3Cpath d='M15,10 L15,25' stroke='%236DAB8A' stroke-width='0.5' opacity='0.12'/%3E%3C/svg%3E"
+];
+const leafSvgs = [
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,2 Q18,8 16,14 Q20,12 22,18 Q16,16 14,18 Q17,22 12,24 Q7,22 10,18 Q8,16 2,18 Q4,12 8,14 Q6,8 12,2Z' fill='%236DAB8A' opacity='0.12'/%3E%3C/svg%3E",
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4,12 Q12,2 20,12 Q12,22 4,12Z' fill='none' stroke='%23C5A866' stroke-width='0.6' opacity='0.15'/%3E%3Cpath d='M12,4 L12,20 M6,12 L18,12' stroke='%23C5A866' stroke-width='0.3' opacity='0.1'/%3E%3C/svg%3E"
+];
+const petalSvgs = [
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10,2 Q14,6 12,10 Q14,14 10,18 Q6,14 8,10 Q6,6 10,2Z' fill='%23C5A866' opacity='0.1'/%3E%3C/svg%3E",
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cellipse cx='10' cy='10' rx='4' ry='8' fill='%236DAB8A' opacity='0.08' transform='rotate(30 10 10)'/%3E%3C/svg%3E"
+];
 
-    for (let i = 0; i < 5; i++) {
-      const d = document.createElement('div');
-      d.className = 'gold-dust';
-      d.style.left = (10 + Math.random() * 80) + '%';
-      d.style.top = (30 + Math.random() * 50) + '%';
-      d.style.setProperty('--gd-dur', (8 + Math.random() * 8) + 's');
-      d.style.setProperty('--gd-del', (Math.random() * 6) + 's');
-      d.style.setProperty('--gd-x1', (Math.random() * 30 - 15) + 'px');
-      d.style.setProperty('--gd-y1', (-15 - Math.random() * 25) + 'px');
-      d.style.setProperty('--gd-x2', (Math.random() * 20 - 10) + 'px');
-      d.style.setProperty('--gd-y2', (-35 - Math.random() * 30) + 'px');
-      d.style.setProperty('--gd-x3', (Math.random() * 15 - 7) + 'px');
-      d.style.setProperty('--gd-y3', (-50 - Math.random() * 30) + 'px');
-      d.style.setProperty('--gd-y4', (-70 - Math.random() * 30) + 'px');
-      d.style.width = (1 + Math.random() * 2.5) + 'px';
-      d.style.height = d.style.width;
-      scene.appendChild(d);
-    }
+const initializedScenes = new Set();
 
-    const botanicals = [
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M15,2 Q8,8 10,15 Q5,12 3,18 Q8,16 12,18 Q9,22 15,28 Q21,22 18,18 Q22,16 27,18 Q25,12 20,15 Q22,8 15,2Z' fill='%236DAB8A' opacity='0.15'/%3E%3C/svg%3E",
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M5,25 Q15,5 25,25' fill='none' stroke='%23C5A866' stroke-width='0.8' opacity='0.2'/%3E%3Cpath d='M10,22 Q15,10 20,22' fill='none' stroke='%23C5A866' stroke-width='0.5' opacity='0.15'/%3E%3C/svg%3E",
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,2 C8,6 6,10 8,14 C4,12 2,16 6,18 C4,20 8,22 12,20 C16,22 20,20 18,18 C22,16 20,12 16,14 C18,10 16,6 12,2Z' fill='none' stroke='%236DAB8A' stroke-width='0.6' opacity='0.12'/%3E%3C/svg%3E",
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M5,15 Q10,5 15,10 Q20,5 25,15 Q20,20 15,18 Q10,20 5,15Z' fill='%236DAB8A' opacity='0.1'/%3E%3Cpath d='M15,10 L15,25' stroke='%236DAB8A' stroke-width='0.5' opacity='0.12'/%3E%3C/svg%3E",
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cellipse cx='15' cy='12' rx='8' ry='10' fill='none' stroke='%23C5A866' stroke-width='0.6' opacity='0.14'/%3E%3Cpath d='M15,22 L15,28' stroke='%236DAB8A' stroke-width='0.5' opacity='0.1'/%3E%3Cpath d='M10,10 Q15,6 20,10' fill='none' stroke='%23C5A866' stroke-width='0.4' opacity='0.12'/%3E%3C/svg%3E",
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M8,25 Q4,15 15,5 Q26,15 22,25' fill='none' stroke='%236DAB8A' stroke-width='0.7' opacity='0.13'/%3E%3Cpath d='M12,20 Q15,12 18,20' fill='none' stroke='%23C5A866' stroke-width='0.4' opacity='0.1'/%3E%3C/svg%3E"
-    ];
-    for (let i = 0; i < 4; i++) {
-      const b = document.createElement('div');
-      b.className = 'botanical-float';
-      b.style.backgroundImage = `url("${botanicals[i % botanicals.length]}")`;
-      b.style.backgroundSize = 'contain';
-      b.style.backgroundRepeat = 'no-repeat';
-      b.style.width = (18 + Math.random() * 24) + 'px';
-      b.style.height = b.style.width;
-      b.style.left = (10 + Math.random() * 80) + '%';
-      b.style.top = (15 + Math.random() * 70) + '%';
-      b.style.setProperty('--bf-dur', (10 + Math.random() * 10) + 's');
-      b.style.setProperty('--bf-del', (Math.random() * 8) + 's');
-      b.style.setProperty('--bf-dx', (Math.random() * 40 - 20) + 'px');
-      b.style.setProperty('--bf-dy', (-20 - Math.random() * 30) + 'px');
-      b.style.setProperty('--bf-rot', (Math.random() * 30 - 15) + 'deg');
-      scene.appendChild(b);
-    }
+function initSceneParticles(scene) {
+  if (initializedScenes.has(scene.id)) return;
+  initializedScenes.add(scene.id);
 
-    // Leaf spin elements
-    const leafSvgs = [
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,2 Q18,8 16,14 Q20,12 22,18 Q16,16 14,18 Q17,22 12,24 Q7,22 10,18 Q8,16 2,18 Q4,12 8,14 Q6,8 12,2Z' fill='%236DAB8A' opacity='0.12'/%3E%3C/svg%3E",
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4,12 Q12,2 20,12 Q12,22 4,12Z' fill='none' stroke='%23C5A866' stroke-width='0.6' opacity='0.15'/%3E%3Cpath d='M12,4 L12,20 M6,12 L18,12' stroke='%23C5A866' stroke-width='0.3' opacity='0.1'/%3E%3C/svg%3E"
-    ];
-    for (let i = 0; i < 2; i++) {
-      const ls = document.createElement('div');
-      ls.className = 'leaf-spin';
-      ls.style.backgroundImage = `url("${leafSvgs[i % leafSvgs.length]}")`;
-      ls.style.backgroundSize = 'contain';
-      ls.style.backgroundRepeat = 'no-repeat';
-      ls.style.width = (16 + Math.random() * 18) + 'px';
-      ls.style.height = ls.style.width;
-      ls.style.left = (12 + Math.random() * 76) + '%';
-      ls.style.top = (18 + Math.random() * 64) + '%';
-      ls.style.setProperty('--ls-dur', (12 + Math.random() * 10) + 's');
-      ls.style.setProperty('--ls-del', (Math.random() * 10) + 's');
-      ls.style.setProperty('--ls-dx', (Math.random() * 30 - 15) + 'px');
-      ls.style.setProperty('--ls-dy', (-15 - Math.random() * 25) + 'px');
-      ls.style.setProperty('--ls-dx2', (Math.random() * 20 - 10) + 'px');
-      ls.style.setProperty('--ls-dy2', (-30 - Math.random() * 20) + 'px');
-      ls.style.setProperty('--ls-dx3', (Math.random() * 15 - 7) + 'px');
-      ls.style.setProperty('--ls-dy3', (-10 - Math.random() * 20) + 'px');
-      scene.appendChild(ls);
-    }
+  // Use DocumentFragment for batch DOM insertion
+  const frag = document.createDocumentFragment();
 
-    // Petal drift elements
-    const petalSvgs = [
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10,2 Q14,6 12,10 Q14,14 10,18 Q6,14 8,10 Q6,6 10,2Z' fill='%23C5A866' opacity='0.1'/%3E%3C/svg%3E",
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cellipse cx='10' cy='10' rx='4' ry='8' fill='%236DAB8A' opacity='0.08' transform='rotate(30 10 10)'/%3E%3C/svg%3E",
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M3,10 Q10,2 17,10 Q10,14 3,10Z' fill='%23C5A866' opacity='0.09'/%3E%3C/svg%3E"
-    ];
-    for (let i = 0; i < 2; i++) {
-      const pd = document.createElement('div');
-      pd.className = 'petal-drift';
-      pd.style.backgroundImage = `url("${petalSvgs[i % petalSvgs.length]}")`;
-      pd.style.backgroundSize = 'contain';
-      pd.style.backgroundRepeat = 'no-repeat';
-      pd.style.width = (14 + Math.random() * 16) + 'px';
-      pd.style.height = pd.style.width;
-      pd.style.left = (8 + Math.random() * 84) + '%';
-      pd.style.top = (12 + Math.random() * 76) + '%';
-      pd.style.setProperty('--pd-dur', (14 + Math.random() * 10) + 's');
-      pd.style.setProperty('--pd-del', (Math.random() * 12) + 's');
-      pd.style.setProperty('--pd-y1', (-20 - Math.random() * 20) + 'px');
-      pd.style.setProperty('--pd-x1', (Math.random() * 30 - 15) + 'px');
-      pd.style.setProperty('--pd-y2', (-35 - Math.random() * 25) + 'px');
-      pd.style.setProperty('--pd-x2', (Math.random() * 25 - 12) + 'px');
-      pd.style.setProperty('--pd-y3', (-15 - Math.random() * 20) + 'px');
-      pd.style.setProperty('--pd-x3', (Math.random() * 20 - 10) + 'px');
-      scene.appendChild(pd);
+  // Gold particles (6)
+  for (let i = 0; i < 6; i++) {
+    const p = document.createElement('div');
+    p.className = 'gold-particle';
+    p.style.cssText = `left:${10+Math.random()*80}%;top:${15+Math.random()*70}%;width:${2+Math.random()*4}px;height:${2+Math.random()*4}px;`;
+    p.style.setProperty('--fp-dur', (6+Math.random()*8)+'s');
+    p.style.setProperty('--fp-del', (Math.random()*6)+'s');
+    p.style.setProperty('--fp-y', (-40-Math.random()*60)+'px');
+    p.style.setProperty('--fp-x', (Math.random()*30-15)+'px');
+    p.style.setProperty('--fp-y2', (-70-Math.random()*80)+'px');
+    p.style.setProperty('--fp-x2', (Math.random()*20-10)+'px');
+    frag.appendChild(p);
+  }
+
+  // Gold dust (4)
+  for (let i = 0; i < 4; i++) {
+    const d = document.createElement('div');
+    d.className = 'gold-dust';
+    d.style.cssText = `left:${10+Math.random()*80}%;top:${30+Math.random()*50}%;width:${1+Math.random()*2}px;height:${1+Math.random()*2}px;`;
+    d.style.setProperty('--gd-dur', (8+Math.random()*8)+'s');
+    d.style.setProperty('--gd-del', (Math.random()*6)+'s');
+    d.style.setProperty('--gd-x1', (Math.random()*20-10)+'px');
+    d.style.setProperty('--gd-y1', (-15-Math.random()*20)+'px');
+    d.style.setProperty('--gd-x2', (Math.random()*15-7)+'px');
+    d.style.setProperty('--gd-y2', (-30-Math.random()*25)+'px');
+    d.style.setProperty('--gd-x3', (Math.random()*10-5)+'px');
+    d.style.setProperty('--gd-y3', (-45-Math.random()*25)+'px');
+    d.style.setProperty('--gd-y4', (-60-Math.random()*25)+'px');
+    frag.appendChild(d);
+  }
+
+  // Botanical floats (3)
+  for (let i = 0; i < 3; i++) {
+    const b = document.createElement('div');
+    b.className = 'botanical-float';
+    const sz = 18+Math.random()*20;
+    b.style.cssText = `background-image:url("${botanicalSvgs[i%botanicalSvgs.length]}");background-size:contain;background-repeat:no-repeat;width:${sz}px;height:${sz}px;left:${10+Math.random()*80}%;top:${15+Math.random()*70}%;`;
+    b.style.setProperty('--bf-dur', (10+Math.random()*10)+'s');
+    b.style.setProperty('--bf-del', (Math.random()*8)+'s');
+    b.style.setProperty('--bf-dx', (Math.random()*30-15)+'px');
+    b.style.setProperty('--bf-dy', (-20-Math.random()*25)+'px');
+    b.style.setProperty('--bf-rot', (Math.random()*20-10)+'deg');
+    frag.appendChild(b);
+  }
+
+  // Leaf spin (1)
+  const ls = document.createElement('div');
+  ls.className = 'leaf-spin';
+  const lsz = 16+Math.random()*14;
+  ls.style.cssText = `background-image:url("${leafSvgs[0]}");background-size:contain;background-repeat:no-repeat;width:${lsz}px;height:${lsz}px;left:${15+Math.random()*70}%;top:${20+Math.random()*60}%;`;
+  ls.style.setProperty('--ls-dur', (12+Math.random()*8)+'s');
+  ls.style.setProperty('--ls-del', (Math.random()*8)+'s');
+  ls.style.setProperty('--ls-dx', (Math.random()*20-10)+'px');
+  ls.style.setProperty('--ls-dy', (-15-Math.random()*20)+'px');
+  ls.style.setProperty('--ls-dx2', (Math.random()*15-7)+'px');
+  ls.style.setProperty('--ls-dy2', (-25-Math.random()*15)+'px');
+  ls.style.setProperty('--ls-dx3', (Math.random()*10-5)+'px');
+  ls.style.setProperty('--ls-dy3', (-10-Math.random()*15)+'px');
+  frag.appendChild(ls);
+
+  // Petal drift (1)
+  const pd = document.createElement('div');
+  pd.className = 'petal-drift';
+  const psz = 14+Math.random()*12;
+  pd.style.cssText = `background-image:url("${petalSvgs[0]}");background-size:contain;background-repeat:no-repeat;width:${psz}px;height:${psz}px;left:${10+Math.random()*80}%;top:${15+Math.random()*70}%;`;
+  pd.style.setProperty('--pd-dur', (14+Math.random()*8)+'s');
+  pd.style.setProperty('--pd-del', (Math.random()*10)+'s');
+  pd.style.setProperty('--pd-y1', (-15-Math.random()*15)+'px');
+  pd.style.setProperty('--pd-x1', (Math.random()*20-10)+'px');
+  pd.style.setProperty('--pd-y2', (-30-Math.random()*20)+'px');
+  pd.style.setProperty('--pd-x2', (Math.random()*15-7)+'px');
+  pd.style.setProperty('--pd-y3', (-10-Math.random()*15)+'px');
+  pd.style.setProperty('--pd-x3', (Math.random()*15-7)+'px');
+  frag.appendChild(pd);
+
+  scene.appendChild(frag);
+}
+
+// Lazy particle observer: init particles only when scene first enters viewport
+const particleObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      initSceneParticles(entry.target);
+      particleObserver.unobserve(entry.target);
     }
   });
-}
-initGoldParticles();
+}, { root: document.getElementById('film'), rootMargin: '100px 0px' });
+
+document.querySelectorAll('.scene:not(#s0)').forEach(s => particleObserver.observe(s));
 
 /* ════════════════════════════════════════════
    GOOGLE CALENDAR FUNCTION
@@ -1348,15 +1427,16 @@ initCountdown();
 function openInvitation(e) {
   e.stopPropagation();
   const s0 = document.getElementById('s0');
-  s0.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+  s0.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
   s0.style.opacity = '0';
-  s0.style.transform = 'scale(1.05)';
+  s0.style.transform = 'scale(1.03)';
   setTimeout(() => {
     s0.classList.add('hide');
     document.getElementById('film').style.overflowY = 'auto';
     document.getElementById('scrollHint').style.display = 'flex';
+    // Page indicator will show on first scroll
     if(!playing) toggleAudio();
-  }, 800);
+  }, 600);
 }
 
 // Initially disable scroll until opening is dismissed
@@ -1385,12 +1465,47 @@ document.querySelectorAll('.scene:not(#s0)').forEach(scene => {
   animObserver.observe(scene);
 });
 
-// Hide scroll hint on first scroll
-const film = document.getElementById('film');
+/* ════════════════════════════════════════════
+   PAGE INDICATOR + SCROLL MANAGEMENT
+════════════════════════════════════════════ */
+const pageIndicator = document.getElementById('pageIndicator');
+const pageDots = pageIndicator.querySelectorAll('.page-dot');
+const sceneIds = ['s1','s2','s3','s4','s5','s6','s7','s8'];
+let currentScene = 's1';
+let scrollTicking = false;
+
+// Click dots to navigate
+pageDots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    const target = document.getElementById(dot.dataset.scene);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Track current scene with IntersectionObserver (separate from anim observer)
+const pageObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+      const id = entry.target.id;
+      if (currentScene !== id) {
+        currentScene = id;
+        pageDots.forEach(d => d.classList.toggle('active', d.dataset.scene === id));
+      }
+    }
+  });
+}, { root: document.getElementById('film'), threshold: 0.5 });
+
+sceneIds.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) pageObserver.observe(el);
+});
+
+// Scroll event: hide hint + show page indicator
 film.addEventListener('scroll', function onFirstScroll() {
   const hint = document.getElementById('scrollHint');
   if (hint) hint.classList.add('hidden');
   setTimeout(() => { if (hint) hint.style.display = 'none'; }, 600);
+  pageIndicator.classList.add('show');
   film.removeEventListener('scroll', onFirstScroll);
 }, { passive: true });
 
